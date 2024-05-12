@@ -94,6 +94,7 @@ class SignInScreen extends StatelessWidget {
                       ),
 
                       ///<=======================================Password section======================================>
+
                       CustomText(
                         text: AppStaticStrings.password,
                         fontSize: 16,

@@ -12,10 +12,14 @@ class CustomButton extends StatelessWidget {
       required this.onTap,
       this.title = AppStaticStrings.welcomeBack,
       this.marginVerticel = 0,
-      this.marginHorizontal = 0});
+      this.marginHorizontal = 0,
+      this.fillColor = AppColors.green500,
+      this.textColor = AppColors.loght100});
 
   final double height;
   final double width;
+  final Color fillColor;
+  final Color textColor;
 
   final VoidCallback onTap;
 
@@ -37,11 +41,10 @@ class CustomButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-            color: AppColors.green500),
+            borderRadius: BorderRadius.circular(8.r), color: fillColor),
         child: CustomText(
             fontWeight: FontWeight.w500,
-            color: AppColors.loght100,
+            color: textColor,
             textAlign: TextAlign.center,
             text: title),
       ),

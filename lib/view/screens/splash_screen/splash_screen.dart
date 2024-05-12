@@ -14,8 +14,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   navigate() {
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.toNamed(AppRoute.signIn);
+    Future.delayed(const Duration(seconds: 1), () {
+      Get.toNamed(AppRoute.onBoarding);
     });
   }
 
@@ -33,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CustomImage(
+            size: 180,
             imageType: ImageType.png,
             imageSrc: AppIcons.logo,
           ),

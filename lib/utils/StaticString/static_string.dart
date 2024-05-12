@@ -3,6 +3,13 @@ class AppStaticStrings {
   static const dental = "Dental";
   static const banningSmileClub =
       "Banning Smile Club an exclusive service provided by banning dental group ltd. copyright 2024";
+  static const brightenYourSmile =
+      "Brighten your smile with Banning Smile Club, where dental excellence meets exclusive care";
+  static const unlockTheSecretTo =
+      "Unlock the secret to a radiant smile with Banning Smile Club, the ultimate dental experience";
+  static const joinTheElite =
+      "Join the elite league of smiles with Banning Smile Club, setting new standards in dental care";
+
   static const getStarted = "Get Started";
   static const welcomeBack = "Welcome Back !";
   static const pleaseEnterYour = "Please Enter Your provided informations ";
