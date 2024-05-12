@@ -11,6 +11,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -37,6 +38,18 @@ class HomeScreen extends StatelessWidget {
       "ans":
           "This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, "
     },
+  ];
+
+  final List<String> currentOffer = [
+    AppImages.currentOffer1,
+    AppImages.currentOffer2,
+    AppImages.currentOffer3,
+    AppImages.currentOffer1,
+    AppImages.currentOffer2,
+    AppImages.currentOffer3,
+    AppImages.currentOffer1,
+    AppImages.currentOffer2,
+    AppImages.currentOffer3,
   ];
   Widget expertAdvice({required String icon, required String title}) =>
       Expanded(
@@ -149,29 +162,96 @@ class HomeScreen extends StatelessWidget {
                       title: AppStaticStrings.skinCondition)
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
 
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    top: 16,
-                    bottom: 8,
                     text: AppStaticStrings.fAQ,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
                   CustomText(
                     decoration: TextDecoration.underline,
-                    top: 16,
-                    bottom: 8,
                     text: AppStaticStrings.seeMore,
                     fontSize: 14,
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
 
               ///======================= FAQ List =========================
-              FaqDesign(faqList: faqList)
+              FaqDesign(faqList: faqList),
+
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    text: AppStaticStrings.currentOffers,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  CustomText(
+                    decoration: TextDecoration.underline,
+                    text: AppStaticStrings.seeMore,
+                    fontSize: 14,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+
+              ///========================== Current Offer =========================
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(currentOffer.length, (index) {
+                    return CustomImage(
+                      fit: BoxFit.cover,
+                      sizeWidth: 100.w,
+                      imageSrc: currentOffer[index],
+                      imageType: ImageType.png,
+                    );
+                  }),
+                ),
+              ),
+
+              const CustomText(
+                top: 16,
+                bottom: 16,
+                text: AppStaticStrings.smartCheck,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+
+              /// ====================== Smart Check =======================
+
+              GestureDetector(
+                onTap: () async {
+                  const url = "https://toothlens.com/";
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url));
+                  } else {
+                    // can't launch url, there is some error
+                    throw "Could not launch $url";
+                  }
+                },
+                child: const CustomImage(
+                  fit: BoxFit.cover,
+                  imageSrc: AppImages.banner1,
+                  imageType: ImageType.png,
+                ),
+              ),
+
+              const SizedBox(
+                height: 44,
+              ),
             ],
           ),
         ),

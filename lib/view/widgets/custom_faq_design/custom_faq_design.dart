@@ -3,7 +3,6 @@ import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:dentist/view/widgets/expanded_animation/expanded_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
