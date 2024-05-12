@@ -3,16 +3,16 @@ import 'dart:ui';
 class AppColors {
   ///======================== Blue Series ===========================
 
-  static const Color blue50 = Color(0xffe7ebed);
-  static const Color blue100 = Color(0xffb6c0c8);
-  static const Color blue200 = Color(0xff92a2ae);
-  static const Color blue300 = Color(0xff607888);
-  static const Color blue400 = Color(0xff415d71);
-  static const Color blue500 = Color(0xff12354e);
-  static const Color blue600 = Color(0xff103047);
-  static const Color blue700 = Color(0xff0d2637);
-  static const Color blue800 = Color(0xff0a1d2b);
-  static const Color blue900 = Color(0xff081621);
+  static const Color green50 = Color(0xffe7ebed);
+  static const Color green100 = Color(0xffb6c0c8);
+  static const Color green200 = Color(0xff92a2ae);
+  static const Color green300 = Color(0xff607888);
+  static const Color green400 = Color(0xff415d71);
+  static const Color green500 = Color(0xff12354e);
+  static const Color green600 = Color(0xff103047);
+  static const Color green700 = Color(0xff0d2637);
+  static const Color green800 = Color(0xff0a1d2b);
+  static const Color green900 = Color(0xff081621);
 
   ///======================== Blue Series ===========================
 

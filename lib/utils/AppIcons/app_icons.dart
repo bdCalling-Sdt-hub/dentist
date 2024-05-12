@@ -20,4 +20,6 @@ class AppIcons {
   static const String profileUnselected = "$basePath/profileUnselected.svg";
   static const String settings = "$basePath/settings.svg";
   static const String terms = "$basePath/terms.svg";
+
+  static const String pdf = "$basePath/pdf.svg";
 }
