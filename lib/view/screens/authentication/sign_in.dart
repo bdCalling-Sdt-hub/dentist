@@ -1,9 +1,11 @@
+import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_button/custom_button.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:dentist/view/widgets/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -130,7 +132,7 @@ class SignInScreen extends StatelessWidget {
               CustomButton(
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    //Get.toNamed(AppRoute.homeScreen);
+                    Get.toNamed(AppRoute.home);
                   }
                 },
                 title: AppStaticStrings.logIn,

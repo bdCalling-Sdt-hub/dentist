@@ -24,7 +24,7 @@ class AppStaticStrings {
   //============================= Home Screen ================================
 
   static const searchhere = "Search here";
-  static const expertsAdvice = "Experts’ Advice";
+  static const expertsAdvice = "Expert's Advice";
   static const dentalCondition = "Dental Condition";
   static const skinCondition = "Skin Condition";
   static const fAQ = "FAQ";
