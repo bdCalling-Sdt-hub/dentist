@@ -38,10 +38,10 @@ class CustomButton extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
-            color: AppColors.green400),
+            color: AppColors.green500),
         child: CustomText(
             fontWeight: FontWeight.w500,
-            color: AppColors.green400,
+            color: AppColors.loght100,
             textAlign: TextAlign.center,
             text: title),
       ),

@@ -16,7 +16,7 @@ class CustomTextField extends StatefulWidget {
     this.maxLines = 1,
     this.validator,
     this.hintText,
-    this.hintStyle,
+    this.hintStyle = const TextStyle(color: AppColors.dark200),
     this.fillColor = Colors.transparent,
     this.suffixIcon,
     this.onChanged,

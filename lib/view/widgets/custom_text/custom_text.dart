@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
     this.bottom = 0,
     this.fontSize = 12,
     this.fontWeight = FontWeight.w400,
-    this.color = AppColors.dark100,
+    this.color = AppColors.dark700,
     required this.text,
     this.overflow = TextOverflow.ellipsis,
     this.decoration,

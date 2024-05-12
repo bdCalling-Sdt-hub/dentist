@@ -1,6 +1,9 @@
 class AppIcons {
   static const String basePath = "assets/icons";
 
+  //static const String logo = "$basePath/logo.svg";
+  static const String logo = "$basePath/logo.png";
+
   static const String aboutUs = "$basePath/aboutUs.svg";
   static const String changePass = "$basePath/aboutUs.svg";
   static const String edit = "$basePath/aboutUs.svg";
