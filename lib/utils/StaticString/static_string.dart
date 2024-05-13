@@ -36,6 +36,7 @@ class AppStaticStrings {
   static const myPlan = "My Plan";
   static const profile = "Profile";
   static const needHelp = "Need Help";
+  static const help = " Help ";
 
   static const dentalApp = "Dental app";
   static const message = "Message";

@@ -7,6 +7,7 @@ import 'package:dentist/view/screens/home/inner/home_appbar.dart';
 import 'package:dentist/view/widgets/custom_faq_design/custom_faq_design.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
+import 'package:dentist/view/widgets/navBar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -82,6 +83,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const NavBar(currentIndex: 0),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
