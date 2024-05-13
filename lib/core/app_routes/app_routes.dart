@@ -4,6 +4,7 @@ import 'package:dentist/view/screens/dentalCondition/dental_condition.dart';
 import 'package:dentist/view/screens/faq_screen/faq_screen.dart';
 import 'package:dentist/view/screens/home/home.dart';
 import 'package:dentist/view/screens/onboarding/onboarding.dart';
+import 'package:dentist/view/screens/search_screen/search_screen.dart';
 import 'package:dentist/view/screens/skinCondition/skin_condition.dart';
 import 'package:dentist/view/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,13 @@ class AppRoute {
 
   static const String faq = "/faq";
 
+  ///==================== Search Screen ====================
+
+  static const String search = "/search";
+//
+//
+//
+//
   static List<GetPage> routes = [
     ///==================== Initial Routes ====================
 
@@ -64,5 +72,8 @@ class AppRoute {
     ///==================== FAQ Screen ====================
 
     GetPage(name: faq, page: () => FAQScreen()),
+
+    ///==================== Search Screen ====================
+    GetPage(name: search, page: () => const SearchScreen()),
   ];
 }

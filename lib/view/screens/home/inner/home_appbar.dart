@@ -1,3 +1,4 @@
+import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/network_img/network_img.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
@@ -5,6 +6,7 @@ import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:dentist/view/widgets/custom_text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -78,7 +80,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           CustomTextField(
             onTapClick: () {
-              //  Get.toNamed(AppRoute.searchScreen);
+              Get.toNamed(AppRoute.search);
             },
             readOnly: true,
             hintText: AppStaticStrings.searchhere,
