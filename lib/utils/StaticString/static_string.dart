@@ -69,4 +69,7 @@ class AppStaticStrings {
   static const aboutus = "About us";
   static const notifications = "Notifications";
   static const search = "Search";
+  static const call = "Call";
+  static const chat = "Chat";
+  static const mail = "Mail";
 }

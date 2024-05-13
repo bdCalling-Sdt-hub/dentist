@@ -1,6 +1,9 @@
 import 'package:dentist/view/screens/authentication/sign_in.dart';
+import 'package:dentist/view/screens/conditionDetails/condition_details.dart';
+import 'package:dentist/view/screens/dentalCondition/dental_condition.dart';
 import 'package:dentist/view/screens/home/home.dart';
 import 'package:dentist/view/screens/onboarding/onboarding.dart';
+import 'package:dentist/view/screens/skinCondition/skin_condition.dart';
 import 'package:dentist/view/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +20,18 @@ class AppRoute {
 
   static const String home = "/home";
 
+  ///==================== Dental Condition ====================
+
+  static const String dentalCondition = "/dentalCondition";
+
+  ///==================== Skin Condition ====================
+
+  static const String skinCondition = "/skinCondition";
+
+  ///==================== Condition Details ====================
+
+  static const String conditionDetails = "/conditionDetails";
+
   static List<GetPage> routes = [
     ///==================== Initial Routes ====================
 
@@ -30,5 +45,15 @@ class AppRoute {
 
     ///==================== Home Screen ====================
     GetPage(name: home, page: () => HomeScreen()),
+
+    ///==================== Dental Condition ====================
+    GetPage(name: dentalCondition, page: () => DentalCondition()),
+
+    ///==================== Skin Condition ====================
+
+    GetPage(name: skinCondition, page: () => SkinCondition()),
+
+    ///==================== Condition Details ====================
+    GetPage(name: conditionDetails, page: () => ConditionDetails()),
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppImg/app_img.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
@@ -51,23 +52,31 @@ class HomeScreen extends StatelessWidget {
     AppImages.currentOffer2,
     AppImages.currentOffer3,
   ];
-  Widget expertAdvice({required String icon, required String title}) =>
+  Widget expertAdvice(
+          {required String icon,
+          required String title,
+          required VoidCallback onTap}) =>
       Expanded(
-          child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: AppColors.loght600),
-            borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.all(20.r),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomImage(
-              imageSrc: icon,
-              size: 40.r,
-              imageType: ImageType.png,
-            ),
-            CustomText(top: 10.h, text: title)
-          ],
+          child: GestureDetector(
+        onTap: () {
+          onTap();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: AppColors.loght600),
+              borderRadius: BorderRadius.circular(8)),
+          padding: EdgeInsets.all(20.r),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomImage(
+                imageSrc: icon,
+                size: 40.r,
+                imageType: ImageType.png,
+              ),
+              CustomText(top: 10.h, text: title)
+            ],
+          ),
         ),
       ));
   @override
@@ -149,6 +158,9 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   ///================= Dental Condition ===================
                   expertAdvice(
+                      onTap: () {
+                        Get.toNamed(AppRoute.dentalCondition);
+                      },
                       icon: AppImages.dentalCondition,
                       title: AppStaticStrings.dentalCondition),
                   SizedBox(
@@ -158,6 +170,9 @@ class HomeScreen extends StatelessWidget {
                   ///================= Skin Care ===================
 
                   expertAdvice(
+                      onTap: () {
+                        Get.toNamed(AppRoute.skinCondition);
+                      },
                       icon: AppImages.skinCare,
                       title: AppStaticStrings.skinCondition)
                 ],
