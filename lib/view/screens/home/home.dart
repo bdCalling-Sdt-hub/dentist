@@ -181,18 +181,23 @@ class HomeScreen extends StatelessWidget {
                 height: 16,
               ),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
+                  const CustomText(
                     text: AppStaticStrings.fAQ,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
-                  CustomText(
-                    decoration: TextDecoration.underline,
-                    text: AppStaticStrings.seeMore,
-                    fontSize: 14,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoute.faq);
+                    },
+                    child: const CustomText(
+                      decoration: TextDecoration.underline,
+                      text: AppStaticStrings.seeMore,
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
