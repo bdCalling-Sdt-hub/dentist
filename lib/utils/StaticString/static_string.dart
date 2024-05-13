@@ -30,6 +30,8 @@ class AppStaticStrings {
   static const fAQ = "FAQ";
   static const seeMore = "See more";
   static const currentOffers = "Current Offers";
+  static const currentOffersDetails = "Current Offer Details";
+
   static const smartCheck = "Smart Check";
 
   static const home = "Home";

@@ -53,6 +53,7 @@ class HomeScreen extends StatelessWidget {
     AppImages.currentOffer2,
     AppImages.currentOffer3,
   ];
+
   Widget expertAdvice(
           {required String icon,
           required String title,
@@ -210,18 +211,23 @@ class HomeScreen extends StatelessWidget {
               ///======================= FAQ List =========================
               FaqDesign(faqList: faqList),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
+                  const CustomText(
                     text: AppStaticStrings.currentOffers,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
-                  CustomText(
-                    decoration: TextDecoration.underline,
-                    text: AppStaticStrings.seeMore,
-                    fontSize: 14,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoute.currentOffer);
+                    },
+                    child: const CustomText(
+                      decoration: TextDecoration.underline,
+                      text: AppStaticStrings.seeMore,
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
