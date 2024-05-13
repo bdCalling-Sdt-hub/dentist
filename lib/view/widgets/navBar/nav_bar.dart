@@ -131,7 +131,7 @@ class _NavBarState extends State<NavBar> {
       }
     } else if (index == 1) {
       if (!(widget.currentIndex == 1)) {
-        Get.offAll(() => const MyPlan());
+        Get.offAll(() => MyPlan());
       }
     } else if (index == 2) {
       if (!(widget.currentIndex == 2)) {

@@ -75,4 +75,9 @@ class AppStaticStrings {
   static const call = "Call";
   static const chat = "Chat";
   static const mail = "Mail";
+
+  static const memberShipPackage = "Membership Package";
+
+
+  
 }
