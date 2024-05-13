@@ -38,7 +38,7 @@ class CustomNetworkImage extends StatelessWidget {
                 color: backgroundColor,
                 image: DecorationImage(
                     image: imageProvider,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     colorFilter: colorFilter),
               ),
               child: child,
