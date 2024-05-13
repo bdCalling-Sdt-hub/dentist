@@ -2,6 +2,7 @@ import 'package:dentist/view/screens/authentication/sign_in.dart';
 import 'package:dentist/view/screens/conditionDetails/condition_details.dart';
 import 'package:dentist/view/screens/current_offer/current_offer.dart';
 import 'package:dentist/view/screens/dentalCondition/dental_condition.dart';
+import 'package:dentist/view/screens/edit_profile/edit_profile.dart';
 import 'package:dentist/view/screens/faq_screen/faq_screen.dart';
 import 'package:dentist/view/screens/home/home.dart';
 import 'package:dentist/view/screens/offer_details/offer_details.dart';
@@ -51,6 +52,11 @@ class AppRoute {
   ///==================== Current Offer Details ====================
 
   static const String offerDetails = "/offerDetails";
+
+  ///==================== Edit Profile ====================
+
+  static const String editProfile = "/editProfile";
+//
 //
 //
 //
@@ -92,5 +98,9 @@ class AppRoute {
 
     ///==================== Current Offer Details ====================
     GetPage(name: offerDetails, page: () => OfferDetails()),
+
+    ///==================== Edit Profile ====================
+
+    GetPage(name: editProfile, page: () => EditProfile()),
   ];
 }
