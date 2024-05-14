@@ -58,7 +58,7 @@ class HomeAppBar extends StatelessWidget {
                   ///<==================== notification ====================>
                   IconButton(
                       onPressed: () {
-                        //   Get.toNamed(AppRoute.notification);
+                        Get.toNamed(AppRoute.notification);
                       },
                       icon: const Icon(Icons.notifications)),
 

@@ -6,6 +6,7 @@ import 'package:dentist/view/screens/edit_profile/edit_profile.dart';
 import 'package:dentist/view/screens/faq_screen/faq_screen.dart';
 import 'package:dentist/view/screens/home/home.dart';
 import 'package:dentist/view/screens/no_internet/no_internet.dart';
+import 'package:dentist/view/screens/notification/notification.dart';
 import 'package:dentist/view/screens/offer_details/offer_details.dart';
 import 'package:dentist/view/screens/onboarding/onboarding.dart';
 import 'package:dentist/view/screens/search_screen/search_screen.dart';
@@ -61,6 +62,10 @@ class AppRoute {
   ///==================== No Internet ====================
 
   static const String noInternet = "/noInternet";
+
+  ///==================== Notification ====================
+
+  static const String notification = "/Notification";
 //
 //
 //
@@ -114,5 +119,9 @@ class AppRoute {
         page: () => NoInternetScreen(
               onTap: () {},
             )),
+
+    ///==================== Notification ====================
+
+    GetPage(name: notification, page: () => NotificationScreen()),
   ];
 }
