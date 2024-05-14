@@ -5,9 +5,9 @@ class AppIcons {
   static const String logo = "$basePath/logo.png";
 
   static const String aboutUs = "$basePath/aboutUs.svg";
-  static const String changePass = "$basePath/aboutUs.svg";
+  static const String changePass = "$basePath/changePass.svg";
   static const String edit = "$basePath/aboutUs.svg";
-  static const String faq = "$basePath/aboutUs.svg";
+  static const String faq = "$basePath/faq.svg";
 
   static const String homeUnselected = "$basePath/home_unselected.svg";
   static const String homeSelected = "$basePath/homeSelected.svg";

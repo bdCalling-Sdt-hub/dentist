@@ -4,6 +4,7 @@ import 'package:dentist/utils/AppImg/app_img.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/screens/home/inner/home_appbar.dart';
+import 'package:dentist/view/screens/home/inner/side_drawer.dart';
 import 'package:dentist/view/widgets/custom_faq_design/custom_faq_design.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -84,6 +85,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      drawer: const SideDrawer(),
       bottomNavigationBar: const NavBar(currentIndex: 0),
       body: SingleChildScrollView(
         child: Padding(

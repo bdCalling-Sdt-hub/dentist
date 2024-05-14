@@ -1,3 +1,4 @@
+import 'package:dentist/view/screens/about_us/about_us.dart';
 import 'package:dentist/view/screens/authentication/sign_in.dart';
 import 'package:dentist/view/screens/conditionDetails/condition_details.dart';
 import 'package:dentist/view/screens/current_offer/current_offer.dart';
@@ -9,9 +10,13 @@ import 'package:dentist/view/screens/no_internet/no_internet.dart';
 import 'package:dentist/view/screens/notification/notification.dart';
 import 'package:dentist/view/screens/offer_details/offer_details.dart';
 import 'package:dentist/view/screens/onboarding/onboarding.dart';
+import 'package:dentist/view/screens/privacy_policy/privacy_policy.dart';
+import 'package:dentist/view/screens/profile/profile.dart';
 import 'package:dentist/view/screens/search_screen/search_screen.dart';
+import 'package:dentist/view/screens/settings/settings.dart';
 import 'package:dentist/view/screens/skinCondition/skin_condition.dart';
 import 'package:dentist/view/screens/splash_screen/splash_screen.dart';
+import 'package:dentist/view/screens/terms_condition/terms_condition.dart';
 import 'package:get/get.dart';
 
 class AppRoute {
@@ -55,9 +60,10 @@ class AppRoute {
 
   static const String offerDetails = "/offerDetails";
 
-  ///==================== Edit Profile ====================
+  ///==================== Profile ====================
 
   static const String editProfile = "/editProfile";
+  static const String profile = "/profile";
 
   ///==================== No Internet ====================
 
@@ -66,6 +72,14 @@ class AppRoute {
   ///==================== Notification ====================
 
   static const String notification = "/Notification";
+
+  ///============================ Side Drawer ==========================
+
+  static const String aboutUs = "/aboutUs";
+  static const String privacyPolicy = "/privacyPolicy";
+  static const String termsCondition = "/termsCondition";
+  static const String settings = "/settings";
+
 //
 //
 //
@@ -109,9 +123,10 @@ class AppRoute {
     ///==================== Current Offer Details ====================
     GetPage(name: offerDetails, page: () => OfferDetails()),
 
-    ///==================== Edit Profile ====================
+    ///==================== Profile ====================
 
     GetPage(name: editProfile, page: () => const EditProfile()),
+    GetPage(name: profile, page: () => const ProfileScreen()),
 
     ///==================== No Internet ====================
     GetPage(
@@ -123,5 +138,12 @@ class AppRoute {
     ///==================== Notification ====================
 
     GetPage(name: notification, page: () => NotificationScreen()),
+
+    ///============================ Side Drawer ==========================
+
+    GetPage(name: aboutUs, page: () => const AboutUs()),
+    GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
+    GetPage(name: termsCondition, page: () => const TermsCondition()),
+    GetPage(name: settings, page: () => const SettingScreen()),
   ];
 }

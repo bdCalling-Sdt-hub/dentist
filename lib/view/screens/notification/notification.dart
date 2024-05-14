@@ -85,6 +85,7 @@ class NotificationScreen extends StatelessWidget {
                 ),
 
                 ///======================= Time ======================
+
                 CustomText(
                   text: data["time"] ?? "",
                   fontWeight: FontWeight.w300,
