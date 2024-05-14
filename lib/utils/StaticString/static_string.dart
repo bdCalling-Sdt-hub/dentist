@@ -85,5 +85,7 @@ class AppStaticStrings {
   static const chat = "Chat";
   static const mail = "Mail";
 
+  static const writeYourMessage = "Write your message";
+
   static const memberShipPackage = "Membership Package";
 }

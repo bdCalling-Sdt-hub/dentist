@@ -2,6 +2,7 @@ import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/home/home.dart';
+import 'package:dentist/view/screens/message/message.dart';
 import 'package:dentist/view/screens/my_plan/my_plan.dart';
 import 'package:dentist/view/screens/profile/profile.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -139,10 +140,10 @@ class _NavBarState extends State<NavBar> {
       }
     }
     //
-    // else if (index == 3) {
-    //   if (!(widget.currentIndex == 3)) {
-    //     Get.to(() => const OfferScreen());
-    //   }
-    // }
+    else if (index == 3) {
+      if (!(widget.currentIndex == 3)) {
+        Get.to(() => MessageScreen());
+      }
+    }
   }
 }

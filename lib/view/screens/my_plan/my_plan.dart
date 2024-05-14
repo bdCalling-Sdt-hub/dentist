@@ -48,6 +48,9 @@ class MyPlan extends StatelessWidget {
             ],
             borderRadius: BorderRadius.circular(20),
             color: AppColors.loght600,
+
+            ///======================= Back Ground Image =======================
+
             image: const DecorationImage(
                 image: AssetImage(AppIcons.logo),
                 opacity: .05,
