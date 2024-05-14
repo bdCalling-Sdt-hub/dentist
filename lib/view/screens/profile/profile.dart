@@ -56,9 +56,54 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-                
+              ///============================= Top Design ============================
+              
+              Container(
+                margin: EdgeInsets.only(bottom: 20.h),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: AppColors.green500,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: AppColors.loght600,
+                      offset: Offset(0.1, 1.0), //(x,y)
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                padding: EdgeInsets.all(20.r),
+                child: Column(
+                  children: [
+                    ///======================= Image =====================
+
+                    CustomNetworkImage(
+                        boxShape: BoxShape.circle,
+                        imageUrl: AppConstants.onlineImage,
+                        height: 100,
+                        width: 100),
+
+                    ///======================= User Name =====================
+                    CustomText(
+                      top: 10,
+                      text: "Patient Mahmud",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.loght100,
+                    ),
+
+                    ///======================= User Disicess =====================
+                    const CustomText(
+                      text: "(Gum patient)",
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.loght100,
+                    ),
+                  ],
+                ),
+              ),
 
               ///============================= Bottom Design ============================
+              
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

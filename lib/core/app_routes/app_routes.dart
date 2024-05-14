@@ -101,6 +101,6 @@ class AppRoute {
 
     ///==================== Edit Profile ====================
 
-    GetPage(name: editProfile, page: () => EditProfile()),
+    GetPage(name: editProfile, page: () => const EditProfile()),
   ];
 }

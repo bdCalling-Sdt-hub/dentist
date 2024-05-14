@@ -15,9 +15,18 @@ class AppStaticStrings {
   static const pleaseEnterYour = "Please Enter Your provided informations ";
   static const email = "Email";
   static const enterYourEmail = "Enter your email here";
+  static const enterYourContact = "Enter your contact here";
+  static const enterYourDateOfBirth = "Enter your date of birth here";
+  static const enterYourAge = "Enter your age here";
+  static const enterYourPin = "Enter your pin here";
+  static const enterYourGender = "Enter your gender here";
+
+  static const enterYourName = "Enter your name here";
+
   static const pinNo = "Pin no";
   static const enterYourPinNum = "Enter your pin number";
   static const password = "Password";
+
   static const enterYourPassword = "Enter your Password";
   static const logIn = "Log in";
 
@@ -77,7 +86,4 @@ class AppStaticStrings {
   static const mail = "Mail";
 
   static const memberShipPackage = "Membership Package";
-
-
-  
 }
