@@ -37,6 +37,7 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
       );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +55,7 @@ class SettingScreen extends StatelessWidget {
             customRow(
                 image: AppIcons.changePass,
                 onTap: () {
-                  Get.offAllNamed(AppRoute.profile);
+                  Get.toNamed(AppRoute.changePass);
                 },
                 title: AppStaticStrings.changePassword),
           ],

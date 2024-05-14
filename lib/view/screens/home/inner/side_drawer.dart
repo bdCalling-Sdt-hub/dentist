@@ -135,7 +135,9 @@ class SideDrawer extends StatelessWidget {
 
                     customRow(
                         image: AppIcons.logOut,
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed(AppRoute.signIn);
+                        },
                         title: AppStaticStrings.logOut),
                   ],
                 ),

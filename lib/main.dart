@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.fadeIn,
         transitionDuration: const Duration(milliseconds: 200),
-        initialRoute: AppRoute.home,
+        initialRoute: AppRoute.splashScreen,
         navigatorKey: Get.key,
         getPages: AppRoute.routes,
       ),

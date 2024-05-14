@@ -1,5 +1,6 @@
 import 'package:dentist/view/screens/about_us/about_us.dart';
 import 'package:dentist/view/screens/authentication/sign_in.dart';
+import 'package:dentist/view/screens/change_pass/change_pass.dart';
 import 'package:dentist/view/screens/conditionDetails/condition_details.dart';
 import 'package:dentist/view/screens/current_offer/current_offer.dart';
 import 'package:dentist/view/screens/dentalCondition/dental_condition.dart';
@@ -80,6 +81,9 @@ class AppRoute {
   static const String termsCondition = "/termsCondition";
   static const String settings = "/settings";
 
+  ///============================ Change Pass ==========================
+  static const String changePass = "/changePass";
+
 //
 //
 //
@@ -145,5 +149,8 @@ class AppRoute {
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
     GetPage(name: termsCondition, page: () => const TermsCondition()),
     GetPage(name: settings, page: () => const SettingScreen()),
+
+    ///============================ Change Pass ==========================
+    GetPage(name: changePass, page: () => const ChangePass()),
   ];
 }

@@ -23,9 +23,17 @@ class AppStaticStrings {
 
   static const enterYourName = "Enter your name here";
 
+  static const enterYourOldPass = "Enter your old password";
+
+  static const enterYourNewPass = "Enter your new password";
+  static const confirmPass = "Confirm Password";
+
   static const pinNo = "Pin no";
   static const enterYourPinNum = "Enter your pin number";
   static const password = "Password";
+
+  static const oldPass = "Old password";
+  static const newPass = "New password";
 
   static const enterYourPassword = "Enter your Password";
   static const logIn = "Log in";
