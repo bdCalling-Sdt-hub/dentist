@@ -32,9 +32,12 @@ class ConditionDetails extends StatelessWidget {
               ///=========================== Title ========================
 
               const CustomText(
-                text: "Toothache why and how ?",
+                text:
+                    "Dental Hygiene & The Role of Regular Visits at Banning Dental Group",
                 fontSize: 14,
+                maxLines: 2,
                 bottom: 16,
+                textAlign: TextAlign.left,
               ),
 
               ///========================= Post Image ======================
@@ -52,7 +55,7 @@ class ConditionDetails extends StatelessWidget {
                 textAlign: TextAlign.justify,
                 maxLines: 100,
                 text:
-                    "You've made a dentist appointment, and it can't come soon enough. Meanwhile, it can help to rinse your mouth with warm water, floss to remove food caught between teeth, and take an over-the-counter pain reliever. If you notice swelling or pus around the tooth, or if you have a fever, that could be a sign that you have an abscess, a more serious problem. See your dentist as soon as possible. You may need antibiotics as well as other treatments.Why Does My Tooth Hurt? Whether it's sharp and sudden or dull and constant, tooth pain is hard to ignore. A toothache or tooth pain is caused when the nerve in the root of a tooth or surrounding a tooth is irritated. Dental (tooth) infection, decay, injury, or loss of a tooth are the most common causes of dental pain. Pain may also occur after an extraction (when a tooth is pulled out). Pain sometimes comes from other areas and goes to the jaw, thus appearing to be tooth pain. The most common areas include the jaw joint (temporomandibular joint, or TMJ), ear, sinuses, and even occasionally from heart problems.Bacteria growing inside your mouth can contribute to gum disease and dental decay, both of which can cause pain. Often, gum disease will not result in any pain.",
+                    "Maintaining oral health is a critical component of overall wellbeing. Regular visits to a dental hygienist, like those provided by the Banning Dental Group, offer comprehensive care that goes beyond just keeping your teeth clean. These appointments are crucial for preventing dental issues and ensuring long-term dental health. When you visit a dental hygienist, you receive thorough cleanings that remove plaque and tartar buildup. Such accumulations, if left unchecked, can lead to gum disease and tooth decay—common conditions that can be both painful and expensive to treat. The hygienist's specialized tools clean areas of your mouth that regular brushing and flossing might miss. Moreover, dental hygienists are pivotal in spotting early signs of oral problems. Early detection can lead to simpler and less costly treatments. Dental hygienists can also offer tailored advice for at-home care, including brushing techniques and suitable products, ensuring your personal routine is as effective as possible. Education is another significant aspect of a dental hygienist's role. Understanding the effects of diet, lifestyle choices, and other factors on oral health can empower you to make better decisions for your teeth and gums. For example, learning about the impact of smoking or sugar on oral health can motivate behavior change for enhanced overall health. At Banning Dental Group, consistency in visiting dental hygienists ensures that any changes in your oral health are recorded and monitored. This way, the hygienist and dentist can work together to adjust treatment plans promptly, maintaining optimal oral health. In short, dental hygienists are essential allies in the fight against gum disease, tooth decay, and other oral conditions. Their expertise contributes to a healthier smile and a healthier you. Regular appointments at Banning Dental Group can save you from future discomfort and expensive dental procedures, while also providing a foundation for a lifetime of healthy smiles.",
                 fontSize: 14,
                 bottom: 16,
               ),

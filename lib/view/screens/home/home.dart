@@ -265,7 +265,7 @@ class HomeScreen extends StatelessWidget {
 
               GestureDetector(
                 onTap: () async {
-                  const url = "https://toothlens.com/";
+                  const url = "https://smartcheck.toothlens.com/Banning-dental/";
                   if (await canLaunchUrl(Uri.parse(url))) {
                     await launchUrl(Uri.parse(url));
                   } else {
