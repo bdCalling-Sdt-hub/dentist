@@ -2,6 +2,7 @@ import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/network_img/network_img.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
+import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:dentist/view/widgets/navBar/nav_bar.dart';
@@ -57,11 +58,18 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ///============================= Top Design ============================
-              
+
               Container(
                 margin: EdgeInsets.only(bottom: 20.h),
                 width: double.maxFinite,
                 decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    scale: 5,
+                    alignment: Alignment.centerRight,
+                    image: AssetImage(
+                      AppIcons.logo2,
+                    ),
+                  ),
                   borderRadius: BorderRadius.circular(8),
                   color: AppColors.green500,
                   boxShadow: const [
@@ -73,37 +81,43 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 padding: EdgeInsets.all(20.r),
-                child: Column(
+                child: Row(
                   children: [
                     ///======================= Image =====================
 
                     CustomNetworkImage(
                         boxShape: BoxShape.circle,
                         imageUrl: AppConstants.onlineImage,
-                        height: 100,
-                        width: 100),
+                        height: 120,
+                        width: 120),
 
-                    ///======================= User Name =====================
-                    CustomText(
-                      top: 10,
-                      text: "Patient Mahmud",
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.loght100,
-                    ),
+                    const Expanded(child: SizedBox()),
 
-                    ///======================= User Disicess =====================
-                    const CustomText(
-                      text: "(Gum patient)",
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.loght100,
-                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ///======================= User Name =====================
+                        CustomText(
+                          top: 10,
+                          text: "Patient Mahmud",
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.loght100,
+                        ),
+
+                        ///======================= User Disicess =====================
+                        const CustomText(
+                          text: "(Gum patient)",
+                          color: AppColors.loght100,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
 
               ///============================= Bottom Design ============================
-              
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

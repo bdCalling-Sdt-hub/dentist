@@ -3,6 +3,7 @@ class AppIcons {
 
   //static const String logo = "$basePath/logo.svg";
   static const String logo = "$basePath/logo.png";
+  static const String logo2 = "$basePath/logo2.png";
 
   static const String aboutUs = "$basePath/aboutUs.svg";
   static const String changePass = "$basePath/changePass.svg";

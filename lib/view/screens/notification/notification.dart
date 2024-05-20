@@ -1,4 +1,5 @@
 import 'package:dentist/utils/AppColors/app_colors.dart';
+import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,11 @@ class NotificationScreen extends StatelessWidget {
           return Container(
             margin: const EdgeInsets.only(bottom: 15),
             decoration: BoxDecoration(
+                image: const DecorationImage(
+                    scale: 10,
+                    alignment: Alignment.centerRight,
+                    image: AssetImage(AppIcons.logo),
+                    opacity: .05),
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,
