@@ -14,6 +14,7 @@ class AppStaticStrings {
   static const welcomeBack = "Welcome Back !";
   static const pleaseEnterYour = "Please Enter Your provided informations ";
   static const email = "Email";
+  static const emailConfirmation = "Email Confirmation";
   static const enterYourEmail = "Enter your email here";
   static const enterYourContact = "Enter your contact here";
   static const enterYourDateOfBirth = "Enter your date of birth here";
@@ -96,4 +97,5 @@ class AppStaticStrings {
   static const writeYourMessage = "Write your message";
 
   static const memberShipPackage = "Membership Package";
+  static const fieldCantBeEmpty = "Field Can't Be Empty";
 }

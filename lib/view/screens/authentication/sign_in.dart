@@ -1,4 +1,5 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
+import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_button/custom_button.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -122,10 +123,27 @@ class SignInScreen extends StatelessWidget {
                       ),
 
                       SizedBox(
-                        height: 45.h,
+                        height:16.h,
                       ),
                     ],
                   )),
+
+                 Align(
+                   alignment: AlignmentDirectional.centerEnd,
+                   child: GestureDetector(
+                     onTap:(){
+                     Get.toNamed(AppRoute.forgotPassScreen);
+                     },
+                    child:CustomText(
+                      text:"Forgot Password?",
+                      fontWeight:FontWeight.w400 ,
+                      fontSize: 12.h,
+                      color: AppColors.redColor,
+                      bottom:30.h,
+
+                    ),
+                   )
+                 ),
 
               ///<============================== Login Button ====================================>
 

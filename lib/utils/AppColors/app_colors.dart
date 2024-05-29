@@ -3,6 +3,7 @@ import 'dart:ui';
 class AppColors {
   ///======================== Blue Series ===========================
 
+  static const Color dividerColor = Color(0xffC5C5C5);
   static const Color green50 = Color(0xffe7ebed);
   static const Color green100 = Color(0xffb6c0c8);
   static const Color green200 = Color(0xff92a2ae);
@@ -17,6 +18,7 @@ class AppColors {
   ///======================== Blue Series ===========================
 
   static const Color additional = Color(0xffE2BCC1);
+  static const Color redColor = Color(0xffF16365);
 
   ///======================== Loght Series ===========================
 
