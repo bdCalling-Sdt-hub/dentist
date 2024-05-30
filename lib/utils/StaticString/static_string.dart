@@ -1,5 +1,14 @@
 class AppStaticStrings {
   //============================= OnBoarding ================================
+  static RegExp emailRegexp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  static RegExp passRegexp =
+  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.{8,}$)');
+
+
+
+  static const matchPettern = "Password must have 8 and one capital latter";
   static const dental = "Dental";
   static const banningSmileClub =
       "Banning Smile Club an exclusive service provided by banning dental group ltd. copyright 2024";

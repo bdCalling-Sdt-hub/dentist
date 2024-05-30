@@ -56,44 +56,49 @@ class MyPlan extends StatelessWidget {
                 opacity: .05,
                 fit: BoxFit.contain)),
         padding: EdgeInsets.all(20.r),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const CustomText(
-              bottom: 20,
-              text: AppStaticStrings.memberShipPackage,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CustomText(
+                bottom: 20,
+                text: AppStaticStrings.memberShipPackage,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
 
-            ///======================== Package Featurs ======================
+              ///======================== Package Featurs ======================
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(
-                  planList.length,
-                  (index) => Row(
-                        children: [
-                          Checkbox(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  20.0), // Adjust the radius as needed
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                    planList.length,
+                    (index) => Row(
+                          children: [
+
+                            Checkbox(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20.0), // Adjust the radius as needed
+                              ),
+                              value: true,
+                              activeColor: AppColors.green900,
+                              onChanged: (val) {},
                             ),
-                            value: true,
-                            activeColor: AppColors.green900,
-                            onChanged: (val) {},
-                          ),
-                          Expanded(
-                            child: CustomText(
-                                bottom: 10,
-                                maxLines: 2,
-                                textAlign: TextAlign.left,
-                                text: planList[index]),
-                          ),
-                        ],
-                      )),
-            )
-          ],
+
+                            Expanded(
+                              child: CustomText(
+                                  bottom: 10,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.left,
+                                  text: planList[index]
+                              ),
+                            ),
+                          ],
+                        )),
+              )
+            ],
+          ),
         ),
       ),
     );

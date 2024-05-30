@@ -1,5 +1,7 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
+import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
+import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppImg/app_img.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_button/custom_button.dart';
@@ -25,6 +27,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   int currentIndex = 0;
 
+  @override
+  void initState() {
+    SharePrefsHelper.setBool(AppConstants.onBoard,true);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

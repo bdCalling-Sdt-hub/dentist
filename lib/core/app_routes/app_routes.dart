@@ -1,5 +1,6 @@
 import 'package:dentist/view/screens/ForgotPasswordScreen/forgot_password.dart';
 import 'package:dentist/view/screens/ForgotPasswordScreen/otp_screen.dart';
+import 'package:dentist/view/screens/ResetPasswordScreen/reset.dart';
 import 'package:dentist/view/screens/about_us/about_us.dart';
 import 'package:dentist/view/screens/authentication/sign_in.dart';
 import 'package:dentist/view/screens/change_pass/change_pass.dart';
@@ -88,7 +89,10 @@ class AppRoute {
 
   ///============================ Forgot Password ==========================
   static const String forgotPassScreen = "/forgotPassScreen";
+
   static const String otpScreen = "/otpScreen";
+
+  static const String resetPasswordScreen = "/resetPasswordScreen";
 
 
 
@@ -158,7 +162,12 @@ class AppRoute {
 
     ///============================ Forgot Pass ==========================
     GetPage(name: forgotPassScreen, page: () =>  ForgotPasswordScreen()),
+
     GetPage(name: otpScreen, page: () =>  OtpScreen()),
+
+    GetPage(name: resetPasswordScreen, page: () =>  ResetPasswordScreen()),
+
+
 
 
   ];
