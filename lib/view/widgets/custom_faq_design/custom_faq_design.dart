@@ -16,7 +16,9 @@ class FaqDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Column(
-        children: List.generate(faqList.length, (index) {
+        children: List.generate(
+            homeController.faqModel.value.data!.length,
+            (index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: Column(
@@ -42,7 +44,8 @@ class FaqDesign extends StatelessWidget {
                         Expanded(
                             child: CustomText(
                           textAlign: TextAlign.left,
-                          text: faqList[index]["que"]!,
+                          text:homeController.faqModel.value.data![index].question??"",
+                          //faqList[index]["que"]!,
                           fontWeight: FontWeight.w500,
                         )),
                         IconButton(
@@ -83,7 +86,8 @@ class FaqDesign extends StatelessWidget {
                           ),
                           child: CustomText(
                             textAlign: TextAlign.left,
-                            text: faqList[index]["ans"]!,
+                            text: homeController.faqModel.value.data![index].answer??"",
+                            //faqList[index]["ans"]!,
                             maxLines: 6,
                           ),
                         ))

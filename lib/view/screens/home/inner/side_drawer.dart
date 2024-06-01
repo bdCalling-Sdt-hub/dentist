@@ -1,5 +1,7 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
+import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
+import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
@@ -135,7 +137,14 @@ class SideDrawer extends StatelessWidget {
 
                     customRow(
                         image: AppIcons.logOut,
-                        onTap: () {
+                        onTap: ()async{
+                          SharePrefsHelper.remove(
+                              AppConstants
+                                  .bearerToken);
+                          SharePrefsHelper.remove(AppConstants.rememberMe);
+                          SharePrefsHelper.setBool(AppConstants.onBoard,false);
+                          var value=await SharePrefsHelper.getBool(AppConstants.rememberMe);
+                          print(value);
                           Get.offAllNamed(AppRoute.signIn);
                         },
                         title: AppStaticStrings.logOut),

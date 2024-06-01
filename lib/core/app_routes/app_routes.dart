@@ -154,11 +154,11 @@ class AppRoute {
 
     GetPage(name: aboutUs, page: () => const AboutUs()),
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
-    GetPage(name: termsCondition, page: () => const TermsCondition()),
+    GetPage(name: termsCondition, page: () =>  TermsCondition()),
     GetPage(name: settings, page: () => const SettingScreen()),
 
     ///============================ Change Pass ==========================
-    GetPage(name: changePass, page: () => const ChangePass()),
+    GetPage(name: changePass, page: () =>  ChangePass()),
 
     ///============================ Forgot Pass ==========================
     GetPage(name: forgotPassScreen, page: () =>  ForgotPasswordScreen()),
@@ -166,9 +166,6 @@ class AppRoute {
     GetPage(name: otpScreen, page: () =>  OtpScreen()),
 
     GetPage(name: resetPasswordScreen, page: () =>  ResetPasswordScreen()),
-
-
-
 
   ];
 }

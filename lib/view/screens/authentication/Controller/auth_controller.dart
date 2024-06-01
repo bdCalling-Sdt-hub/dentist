@@ -26,9 +26,16 @@ class AuthController extends GetxController{
 
   TextEditingController forgotEmailController=TextEditingController();
 
+  ///<================================== Text Editing controller for Sign in screen =====================>
+
+  TextEditingController oldPassController=TextEditingController();
+  TextEditingController newPassController=TextEditingController();
+  TextEditingController confirmNewPassController=TextEditingController();
+
+
 
 ///<==================================  This is for Sign In =================================>
-
+  var value;
   bool signInLoading = false;
   signInUser() async {
     signInLoading = true;
@@ -47,8 +54,10 @@ class AuthController extends GetxController{
     if (response.statusCode == 200) {
       SharePrefsHelper.setString(
           AppConstants.bearerToken, response.body["data"]);
-         SharePrefsHelper.setBool(AppConstants.rememberMe,true);
-         update();
+        await SharePrefsHelper.setBool(AppConstants.rememberMe,true);
+     value=await SharePrefsHelper.getBool(AppConstants.rememberMe);
+    update();
+
       Get.offAllNamed(AppRoute.home);
     } else {
       ApiChecker.checkApi(response);
@@ -56,7 +65,6 @@ class AuthController extends GetxController{
     signInLoading = false;
     update();
   }
-
 
   ///<========================== This is for forgot password =========================>
 
@@ -77,17 +85,15 @@ class AuthController extends GetxController{
     update();
   }
 
-  ///<==================== This is verify otp section ===========================>
-
-
+  ///<==================== This is verify otp section =================================>
   String otp = '';
   String token = '';
   forgotOTp() async {
     signInLoading = true;
     update();
     Map<String, dynamic> body = {
-      "email": forgotEmailController.text,
-      "code":otp
+      "email":forgotEmailController.text,
+      "otp":otp
     };
     var response = await ApiClient.postData(
       ApiConstant.verifyOTP,
@@ -105,8 +111,6 @@ class AuthController extends GetxController{
 
     //print('email============${emailController.text}');
   }
-
-
   ///<======================= This is for reset password section =======================>
 
   handleResetPassword() async {
@@ -131,6 +135,38 @@ class AuthController extends GetxController{
     signInLoading = false;
     update();
   }
+
+ ///<=========================  Thi is for change password =============================>
+
+ changePassword()async{
+
+token= await  SharePrefsHelper.getString(AppConstants.bearerToken);
+ print("=-=--=-=-=-=-=-=-=-=-=-=-=-= This is user token   ${token}");
+   signInLoading = true;
+   update();
+  // Map<String, String> header = {'authorization': token};
+   var body = {
+     "currentPassword":oldPassController.text,
+     "newPassword":newPassController.text,
+     "confirmPassword":confirmNewPassController.text,
+   };
+   var response =
+       await ApiClient.postData(ApiConstant.changePassWord, body,
+          // headers: header
+       );
+
+   if (response.statusCode == 200) {
+     Get.snackbar("Done", "Successfully updated");
+    navigator!.pop();
+   } else {
+     ApiChecker.checkApi(response);
+   }
+   signInLoading = false;
+   update();
+
+ }
+
+
 
 
 }

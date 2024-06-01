@@ -48,7 +48,6 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
          appBar: AppBar(),
       body: GetBuilder<AuthController>(
         builder: (controller) {
@@ -61,7 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   children: [
                     ///==============================Enter 6 digit code ===========================
                     CustomText(
-                      text:"Enter 6 digits code",
+                      text:"Enter 4 digits code",
                       fontSize: 24.w,
                       fontWeight: FontWeight.w500,
                       color: AppColors.green500,
@@ -83,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ///<====================== otp field =======================>
                     PinCodeTextField(
                      // controller: pinController,
-                      length: 6,
+                      length: 4,
                       cursorColor: AppColors.green500,
                       keyboardType: TextInputType.text,
                       enablePinAutofill: true,
@@ -91,6 +90,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       onCompleted: (value) {
                         controller.otp = value.toString();
                         controller.update();
+
+                        print("=-=-==-=-=--==-=-=-=-=-=-=-=-This is an otp ${controller.otp}");
+
                       },
                       autoFocus: true,
                       textStyle:

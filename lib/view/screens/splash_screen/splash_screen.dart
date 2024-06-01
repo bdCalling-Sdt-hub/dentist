@@ -21,12 +21,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     bool? isRememberMe =
     await SharePrefsHelper.getBool(AppConstants.rememberMe);
-
+    print("This value is    bool value =========      ${isRememberMe}");
     Future.delayed(const Duration(seconds: 3),(){
      if(onBoarding==true){
-       if(isRememberMe==true){
-         Get.offNamed(AppRoute.signIn);
+       if(isRememberMe==true && isRememberMe!=null){
+         Get.offAllNamed(AppRoute.home);
+       }else{Get.offAllNamed(AppRoute.signIn);
        }
+
      }else{
        Get.offAllNamed(AppRoute.onBoarding);
      }

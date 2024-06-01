@@ -1,6 +1,9 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
+import 'package:dentist/helper/network_img/network_img.dart';
+import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppImg/app_img.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
+import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -31,28 +34,37 @@ class CurrentOffer extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        itemCount: currentOffer.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisExtent: 250,
-            crossAxisCount: 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoute.offerDetails,
-                  arguments: currentOffer[index]);
+      body: GetBuilder<HomeController>(
+        builder: (controller) {
+          return GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            itemCount: controller.offerModel.value.data!.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 250,
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoute.offerDetails,
+                      arguments: controller.offerModel.value.data![index].id.toString());
+                },
+                child:
+                CustomNetworkImage(
+                    imageUrl:"${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
+                    height: 100.h,
+                    width: 100.w)
+                // CustomImage(
+                //   fit: BoxFit.fill,
+                //   sizeWidth: 100.w,
+                //   imageSrc: currentOffer[index],
+                //   imageType: ImageType.png,
+                // ),
+              );
             },
-            child: CustomImage(
-              fit: BoxFit.fill,
-              sizeWidth: 100.w,
-              imageSrc: currentOffer[index],
-              imageType: ImageType.png,
-            ),
           );
-        },
+        }
       ),
     );
   }
