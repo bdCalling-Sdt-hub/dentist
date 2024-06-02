@@ -1,3 +1,4 @@
+import 'package:dentist/helper/network_img/network_img.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -26,14 +27,19 @@ class ConditionCard extends StatelessWidget {
           children: [
             ///=====================- Img =====================
             Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding: const EdgeInsets.all(60),
+                margin: const EdgeInsets.symmetric(horizontal:10,vertical: 10),
+                padding: const EdgeInsets.all(40),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    image: DecorationImage(image: AssetImage(img)))),
+                borderRadius: BorderRadius.circular(8.r),
+                image: DecorationImage(
+                fit: BoxFit.cover,
+                image:NetworkImage(img))
+                ),
+
+
+            ),
 
             ///=====================- Text =====================
-
             Expanded(
                 child: CustomText(
               textAlign: TextAlign.left,

@@ -12,7 +12,7 @@ import 'package:dentist/view/screens/offer_details/Model/offer_details_moel.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with GetxServiceMixin {
 
 
   final rxRequestStatus = Status.loading.obs;
@@ -167,8 +167,6 @@ class HomeController extends GetxController {
       // bannerList.value = List<BannerListDatum>.from(
       //     response.body["data"].map((x) => BannerListDatum.fromJson(x)));
       articleCategoryModel.value = ArticleCategoryMOdel.fromJson(response.body);
-
-
       return true;
     } else {
       if (response.statusText == ApiClient.noInternetMessage) {
@@ -182,7 +180,6 @@ class HomeController extends GetxController {
 
     }
   }
-
   ///<================================ Offer details =============================>
 
   Rx<OfferDetailsModel> offerDetailsModel = OfferDetailsModel().obs;
@@ -221,7 +218,6 @@ class HomeController extends GetxController {
      refresh();
    }
   }
-
 
   @override
   void onInit() {

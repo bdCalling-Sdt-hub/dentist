@@ -137,7 +137,7 @@ class AppRoute {
     ///==================== Profile ====================
 
     GetPage(name: editProfile, page: () => const EditProfile()),
-    GetPage(name: profile, page: () => const ProfileScreen()),
+    GetPage(name: profile, page: () =>  ProfileScreen()),
 
     ///==================== No Internet ====================
     GetPage(
@@ -152,8 +152,8 @@ class AppRoute {
 
     ///============================ Side Drawer ==========================
 
-    GetPage(name: aboutUs, page: () => const AboutUs()),
-    GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
+    GetPage(name: aboutUs, page: () => AboutUs()),
+    GetPage(name: privacyPolicy, page: () =>  PrivacyPolicy()),
     GetPage(name: termsCondition, page: () =>  TermsCondition()),
     GetPage(name: settings, page: () => const SettingScreen()),
 

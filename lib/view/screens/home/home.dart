@@ -185,7 +185,9 @@ class HomeScreen extends StatelessWidget {
                      children:List.generate(homeController.articleCategoryModel.value.data!.length, (index){
                        return  GestureDetector(
                          onTap: () {
-                           Get.toNamed(AppRoute.dentalCondition);
+                           Get.toNamed(AppRoute.dentalCondition,
+                           arguments:homeController.articleCategoryModel.value.data![index].articleCategoryName??""
+                           );
                          },
                          child: Container(
                            margin: EdgeInsets.only(right: 16.w),

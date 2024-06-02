@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'view/widgets/DeviceUtils/device_utils.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  DeviceUtils.lockDevicePortrait();
   DependancyInjection di = DependancyInjection();
   di.dependencies();
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

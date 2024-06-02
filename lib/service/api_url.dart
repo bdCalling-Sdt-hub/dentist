@@ -21,8 +21,8 @@ class ApiConstant {
   static const package = "/api/v1/package";
   static const articleCategory = "/api/v1/article-category";
   static const article = "/api/v1/article";
-  static const patientCare = "/api/v1/article/category/Patient Care";
-  static const singleArticle = "/api/v1/article/665563755cddb6417bf8c6a1";
+  static const articleByCategory = "/api/v1/article/category/";
+  static const singleArticle = "/api/v1/article/";
 
   ///<===================== For settings ==========================>
 
