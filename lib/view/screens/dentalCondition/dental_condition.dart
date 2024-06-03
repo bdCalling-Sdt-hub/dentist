@@ -20,7 +20,8 @@ class DentalCondition extends StatefulWidget {
 }
 
 class _DentalConditionState extends State<DentalCondition> {
-  var name = Get.arguments;
+  var name = Get.arguments[0];
+  var page = Get.arguments[1];
 
   ArticleController articleController = Get.find<ArticleController>();
 
@@ -32,7 +33,7 @@ class _DentalConditionState extends State<DentalCondition> {
 
   @override
   void initState() {
-    articleController.getArticleByCategory(name);
+    articleController.getArticleByCategory(name,page);
     super.initState();
   }
 
@@ -56,7 +57,7 @@ class _DentalConditionState extends State<DentalCondition> {
           case Status.error:
             return GeneralErrorScreen(
               onTap: () {
-                articleController.getArticleByCategory(name);
+                articleController.getArticleByCategory(name,page);
               },
             );
           case Status.completed:

@@ -17,9 +17,14 @@ class ArticleController extends GetxController{
 
   Rx<ArticaleModel> articleModel = ArticaleModel().obs;
 
-  Future<bool> getArticleByCategory(String name) async {
+  Future<bool> getArticleByCategory(String name,String page) async {
     setRxRequestStatus(Status.loading);
-    var response = await ApiClient.getData("${ApiConstant.articleByCategory}${name}");
+    var response;
+    if(page=="search" && page!=null){
+      response = await ApiClient.getData("${ApiConstant.articleByCategory}${name}");
+    }else{
+      response = await ApiClient.getData (ApiConstant.article);
+    }
     if (response.statusCode == 200) {
       articleModel.value = ArticaleModel.fromJson(response.body);
       update();

@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                        return  GestureDetector(
                          onTap: () {
                            Get.toNamed(AppRoute.dentalCondition,
-                           arguments:homeController.articleCategoryModel.value.data![index].articleCategoryName??""
+                           arguments:[homeController.articleCategoryModel.value.data![index].articleCategoryName??"","search"]
                            );
                          },
                          child: Container(

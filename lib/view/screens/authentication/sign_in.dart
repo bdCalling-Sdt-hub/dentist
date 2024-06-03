@@ -151,7 +151,7 @@ class SignInScreen extends StatelessWidget {
                     ? CustomLoader()
                     : CustomButton(
                         onTap: () async {
-                          if (formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()){
                             controller.signInUser();
                           }
                         },

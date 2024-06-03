@@ -20,7 +20,7 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   final TextEditingController pinController = TextEditingController();
 
-  int _secondsRemaining = 20;
+  int _secondsRemaining = 120;
 
   late Timer _timer;
 

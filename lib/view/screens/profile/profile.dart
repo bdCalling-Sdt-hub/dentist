@@ -1,6 +1,7 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/helper/network_img/network_img.dart';
+import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
@@ -92,11 +93,13 @@ class ProfileScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: AppColors.green500,
                           boxShadow: const [
+
                             BoxShadow(
                               color: AppColors.loght600,
                               offset: Offset(0.1, 1.0), //(x,y)
                               blurRadius: 4,
                             ),
+
                           ],
                         ),
                         padding: EdgeInsets.all(20.r),
@@ -106,34 +109,40 @@ class ProfileScreen extends StatelessWidget {
 
                             CustomNetworkImage(
                                 boxShape: BoxShape.circle,
-                                imageUrl: controller.userProfileModel.value.data
-                                        ?.patient?.profile ??
-                                    "",
-                                height: 120,
-                                width: 120),
+                                imageUrl: "${ApiConstant.baseUrl}${controller.userProfileModel.value.data
+                                    ?.patient?.profile ??
+                                    ""}",
+                                height:90.h,
+                                width:90.w),
 
-                            const Expanded(child: SizedBox()),
+                           SizedBox(width: 10.w),
 
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ///======================= User Name =====================
-                                CustomText(
-                                  top: 10,
-                                  text: controller.userProfileModel.value.data
-                                          ?.patient?.name ??
-                                      "",
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.loght100,
-                                ),
+                            SizedBox(),
 
-                                ///======================= User Disicess =====================
-                                const CustomText(
-                                  text: "(Gum patient)",
-                                  color: AppColors.loght100,
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ///======================= User Name =====================
+                                  CustomText(
+                                    top: 10,
+                                    text:controller.userProfileModel.value.data
+                                            ?.patient?.name ??
+                                        "",
+                                    fontSize:14.sp,
+                                    textAlign: TextAlign.left,
+                                    maxLines: 2,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.loght100,
+                                  ),
+                                  ///======================= User Disicess =====================
+                                  CustomText(
+                                    text:
+                                        "(${controller.userProfileModel.value.data?.patient?.category ?? ""} Patient)",
+                                    color: AppColors.loght100,
+                                  ),
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -182,7 +191,9 @@ class ProfileScreen extends StatelessWidget {
                           ///==================== Plan ===================
                           infoDesign(
                               key: AppStaticStrings.plan,
-                              value: "Patient health condition/ what to do."),
+                              value: controller.userProfileModel.value.data
+                                      ?.patient?.plan ??
+                                  ""),
                         ],
                       )
                     ],

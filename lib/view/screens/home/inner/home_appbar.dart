@@ -1,6 +1,7 @@
 import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/helper/network_img/network_img.dart';
+import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/home/controller/homecontroller.dart';
@@ -54,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
                           CustomNetworkImage(
                               boxShape: BoxShape.circle,
                               imageUrl:
-                              controller.userProfileModel.value.data?.patient?.profile??"",
+                              "${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile??""}",
                               height: 60,
                               width: 60),
 

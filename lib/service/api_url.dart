@@ -11,6 +11,7 @@ class ApiConstant {
   static const forgotPassword = "/api/v1/auth/forget-password";
   static const verifyOTP = "/api/v1/auth/verify-otp";
   static const userProfile = "/api/v1/user/profile";
+  static const getContact = "/api/v1/contact";
 
   ///<============================ For home ==============================>
 
@@ -23,6 +24,7 @@ class ApiConstant {
   static const article = "/api/v1/article";
   static const articleByCategory = "/api/v1/article/category/";
   static const singleArticle = "/api/v1/article/";
+  static const editProfile = "/api/v1/patient/profile-update";
 
   ///<===================== For settings ==========================>
 

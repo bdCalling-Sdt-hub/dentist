@@ -136,7 +136,7 @@ class AppRoute {
 
     ///==================== Profile ====================
 
-    GetPage(name: editProfile, page: () => const EditProfile()),
+    GetPage(name: editProfile, page: () =>  EditProfile()),
     GetPage(name: profile, page: () =>  ProfileScreen()),
 
     ///==================== No Internet ====================

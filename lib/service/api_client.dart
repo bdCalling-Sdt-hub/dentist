@@ -73,6 +73,35 @@ class ApiClient extends GetxService {
     }
   }
 
+  static Future<Response> patchData(String uri, dynamic body,
+      {Map<String, String>? headers}) async {
+    bearerToken = await SharePrefsHelper.getString(AppConstants.bearerToken);
+
+    var mainHeaders = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $bearerToken'
+    };
+    try {
+      debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
+      debugPrint('====> API Body: $body');
+
+      http.Response response = await client
+          .patch(
+        Uri.parse(ApiConstant.baseUrl + uri),
+        body: body,
+        headers: headers ?? mainHeaders,
+      )
+          .timeout(const Duration(seconds: timeoutInSeconds));
+      return handleResponse(response, uri);
+    } catch (e) {
+      debugPrint('------------${e.toString()}');
+
+      return const Response(statusCode: 1, statusText: noInternetMessage);
+    }
+  }
+
+
   static Future<Response> postMultipartData(
       String uri, Map<String, String> body,
       {List<MultipartBody>? multipartBody,
@@ -137,6 +166,74 @@ class ApiClient extends GetxService {
       return const Response(statusCode: 1, statusText: noInternetMessage);
     }
   }
+
+
+  static Future<Response> patchMultipartData(
+      String uri, Map<String, String> body,
+      {List<MultipartBody>? multipartBody,
+        Map<String, String>? headers}) async {
+    try {
+      bearerToken = await SharePrefsHelper.getString(AppConstants.bearerToken);
+
+      var mainHeaders = {
+        'Accept': 'multipart/form-data',
+        'Authorization': 'Bearer $bearerToken'
+      };
+
+      debugPrint('====> API Call: $uri\nHeader: ${headers ?? mainHeaders}');
+      debugPrint('====> API Body: $body with ${multipartBody?.length} picture');
+      //http.MultipartRequest _request = http.MultipartRequest('POST', Uri.parse("https://b936-114-130-157-130.ngrok-free.app/api/v1/user/profile/store/degree"));
+      //_request.headers.addAll(headers ?? mainHeaders);
+      // for(MultipartBody multipart in multipartBody!) {
+      //   if(multipart.file != null) {
+      //     Uint8List _list = await multipart.file.readAsBytes();
+      //     _request.files.add(http.MultipartFile(
+      //       multipart.key, multipart.file.readAsBytes().asStream(), _list.length,
+      //       filename: '${DateTime.now().toString()}.png',
+      //     ));
+      //   }
+      // }
+      var request =
+      http.MultipartRequest('PATCH', Uri.parse(ApiConstant.baseUrl + uri));
+      request.fields.addAll(body);
+
+      if (multipartBody!.isNotEmpty) {
+        // ignore: avoid_function_literals_in_foreach_calls
+        multipartBody.forEach((element) async {
+          debugPrint("path : ${element.file.path}");
+
+          var mimeType = lookupMimeType(element.file.path);
+
+          debugPrint("MimeType================$mimeType");
+
+          var multipartImg = await http.MultipartFile.fromPath(
+            element.key,
+            element.file.path,
+            contentType: MediaType.parse(mimeType!),
+          );
+          request.files.add(multipartImg);
+          //request.files.add(await http.MultipartFile.fromPath(element.key, element.file.path,contentType: MediaType('video', 'mp4')));
+        });
+      }
+
+      request.headers.addAll(mainHeaders);
+      http.StreamedResponse response = await request.send();
+      final content = await response.stream.bytesToString();
+      debugPrint(
+          '====> API Response: [${response.statusCode}}] $uri\n$content');
+
+      return Response(
+          statusCode: response.statusCode,
+          statusText: noInternetMessage,
+          body: content);
+    } catch (e) {
+      debugPrint('------------${e.toString()}');
+
+      return const Response(statusCode: 1, statusText: noInternetMessage);
+    }
+  }
+
+
 
   Future<Response> putData(String uri, dynamic body,
       {Map<String, String>? headers}) async {

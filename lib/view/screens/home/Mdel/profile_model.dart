@@ -87,6 +87,8 @@ class Patient {
   int? age;
   String? dateOfBirth;
   String? gender;
+  String? plan;
+  String? category;
   String? profile;
 
   Patient({
@@ -96,6 +98,8 @@ class Patient {
     this.age,
     this.dateOfBirth,
     this.gender,
+    this.plan,
+    this.category,
     this.profile,
   });
 
@@ -110,6 +114,8 @@ class Patient {
     age: json["age"],
     dateOfBirth: json["dateOfBirth"],
     gender: json["gender"],
+    plan: json["plan"],
+    category: json["category"],
     profile: json["profile"],
   );
 
@@ -120,6 +126,8 @@ class Patient {
     "age": age,
     "dateOfBirth": dateOfBirth,
     "gender": gender,
+    "plan": plan,
+    "category": category,
     "profile": profile,
   };
 }

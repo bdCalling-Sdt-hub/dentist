@@ -147,7 +147,7 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                           IconButton(
                             onPressed: () {
-                             articleDetailsController.makingPhoneCall("01720168174");
+                             articleDetailsController.getContact();
                              print("Hiiiiiiiiiiiiiii");
                             },
                             icon: const Row(

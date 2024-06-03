@@ -3,6 +3,7 @@ import 'package:dentist/service/api_client.dart';
 import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/view/screens/conditionDetails/Model/article_details_model.dart';
+import 'package:dentist/view/screens/conditionDetails/Model/contact_model.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,6 +25,31 @@ class ArticleDetailsController extends GetxController{
       artiCleDetailsModel.value = ArticleDetailsModel.fromJson(response.body);
       update();
       setRxRequestStatus(Status.completed);
+      return true;
+    } else {
+      if (response.statusText == ApiClient.noInternetMessage){
+        setRxRequestStatus(Status.internetError);
+      } else {
+        setRxRequestStatus(Status.error);
+      }
+      ApiChecker.checkApi(response);
+      return false;
+    }
+  }
+
+  ///<=========== This is for contact  ===================>
+
+  ContactModel contactModel = ContactModel();
+
+  Future<bool> getContact()async{
+    var response = await ApiClient.getData(ApiConstant.getContact);
+    if (response.statusCode == 200) {
+      print("This is contact     ${contactModel.data?.contact.toString()}");
+      contactModel = ContactModel.fromJson(response.body);
+
+      makingPhoneCall("${contactModel.data?.contact??""}");
+
+      update();
       return true;
     } else {
       if (response.statusText == ApiClient.noInternetMessage){
