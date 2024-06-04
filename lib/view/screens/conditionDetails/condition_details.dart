@@ -180,7 +180,8 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                           IconButton(
                             onPressed: () {
-                            articleDetailsController.sendingMails('hasibulhasan929339@gmail.com','This is subject','This is body');
+                            articleDetailsController.sendEmailToAdmin();
+                            //sendingMails('hasibulhasan929339@gmail.com','This is subject','This is body');
                             },
                             icon: const Row(
                               children: [
@@ -192,6 +193,7 @@ class _ConditionDetailsState extends State<ConditionDetails> {
                               ],
                             ),
                           )
+
                         ],
                       ),
                     )

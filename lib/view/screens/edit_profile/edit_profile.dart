@@ -94,7 +94,8 @@ class EditProfile extends StatelessWidget {
                                  fit: BoxFit.fill,
                                  image:FileImage(File(controller.proImage!.path)))
                             ),
-                            ):CustomNetworkImage(
+                            ):
+                                CustomNetworkImage(
                                 boxShape: BoxShape.circle,
                                 imageUrl: AppConstants.onlineImage,
                                 height: 100,
