@@ -64,7 +64,7 @@ class ArticleDetailsController extends GetxController{
 
   ///<============== This is for make phone call ====================>
 
-  makingPhoneCall(String number) async {
+  makingPhoneCall(String number) async{
     var url = Uri.parse("tel:${number}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
@@ -75,40 +75,6 @@ class ArticleDetailsController extends GetxController{
 
 ///<============= This is for send email ========================>
 
-  // sendingMails(String email) async {
-  //   var url = Uri.parse('mailto:$email');
-  //   if (await canLaunchUrl(url)) {
-  //     await launchUrl(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
-
-
-// Function to send an email
-  Future<void> sendingMails(String recipient, String subject, String body) async {
-    final Uri uri = Uri(
-      scheme: 'mailto',
-      path: recipient,
-      queryParameters: {
-        'subject': subject,
-        'body': body,
-      },
-    );
-
-    final String urlString = uri.toString();
-
-    if (await canLaunch(urlString)) {
-      await launch(urlString);
-    } else {
-      throw 'Could not launch $urlString';
-    }
-  }
-
-
-
-
-
   sendEmailToAdmin(){
     String? encodeQueryParameters(Map<String, String> params) {
       return params.entries
@@ -116,27 +82,16 @@ class ArticleDetailsController extends GetxController{
       '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
           .join('&');
     }
-
     // ···
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'hasibulhasan929339@gmail.com',
+      path: '',
       query: encodeQueryParameters(<String, String>{
-        'subject':"this is subject",
-        'body' : "This is body"
+        'subject':"",
+        'body' : ""
       }),
     );
     launchUrl(emailLaunchUri);
-
-
   }
-
-
-
-
-
-
-
-
 
 }

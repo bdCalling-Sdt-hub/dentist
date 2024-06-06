@@ -1,3 +1,4 @@
+import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/helper/network_img/network_img.dart';
 import 'package:dentist/service/api_url.dart';
@@ -180,8 +181,7 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                           IconButton(
                             onPressed: () {
-                            articleDetailsController.sendEmailToAdmin();
-                            //sendingMails('hasibulhasan929339@gmail.com','This is subject','This is body');
+                           articleDetailsController.sendEmailToAdmin();
                             },
                             icon: const Row(
                               children: [
