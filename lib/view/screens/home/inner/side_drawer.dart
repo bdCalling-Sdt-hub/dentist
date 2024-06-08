@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
@@ -141,9 +143,13 @@ class SideDrawer extends StatelessWidget {
                           SharePrefsHelper.remove(
                               AppConstants
                                   .bearerToken);
+                         await SharePrefsHelper.remove(
+                              AppConstants
+                                  .chatId);
                           SharePrefsHelper.remove(AppConstants.rememberMe);
                           SharePrefsHelper.setBool(AppConstants.onBoard,false);
                           var value=await SharePrefsHelper.getBool(AppConstants.rememberMe);
+
                           print(value);
                           Get.offAllNamed(AppRoute.signIn);
                         },

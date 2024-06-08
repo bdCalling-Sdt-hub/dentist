@@ -1,3 +1,4 @@
+import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
 import 'package:dentist/service/api_check.dart';
 import 'package:dentist/service/api_client.dart';
 import 'package:dentist/service/api_url.dart';
@@ -8,9 +9,11 @@ import 'package:dentist/view/screens/home/Mdel/faq_model.dart';
 import 'package:dentist/view/screens/home/Mdel/offer_model.dart';
 import 'package:dentist/view/screens/home/Mdel/profile_model.dart';
 import 'package:dentist/view/screens/home/Mdel/smart_check_model.dart';
+import 'package:dentist/view/screens/message/Model/message_model.dart';
 import 'package:dentist/view/screens/offer_details/Model/offer_details_moel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController with GetxServiceMixin {
 
@@ -161,6 +164,14 @@ class HomeController extends GetxController with GetxServiceMixin {
   Rx<ArticleCategoryMOdel> articleCategoryModel = ArticleCategoryMOdel().obs;
 
   Future<bool> getArticleCategory() async {
+
+    // var bearerToken = await SharePrefsHelper.getString(AppConstants.bearerToken); // Method to retrieve JWT
+    //
+    // var headers = {
+    //   'Accept': 'application/json',
+    //   'Authorization': 'Bearer $bearerToken',
+    // };
+
     var response = await ApiClient.getData(ApiConstant.articleCategory);
     if (response.statusCode == 200) {
 
@@ -217,12 +228,17 @@ class HomeController extends GetxController with GetxServiceMixin {
      setRxRequestStatus(Status.completed);
      refresh();
    }
+
+
+
   }
+
 
   @override
   void onInit() {
     homeApi();
     super.onInit();
   }
+
 
 }

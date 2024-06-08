@@ -1,3 +1,4 @@
+import 'package:dentist/global/controller/generelController.dart';
 import 'package:dentist/view/screens/about_us/Controller/about_us_controller.dart';
 import 'package:dentist/view/screens/authentication/Controller/auth_controller.dart';
 import 'package:dentist/view/screens/conditionDetails/Controller/article_details_controller.dart';
@@ -45,6 +46,12 @@ class DependancyInjection extends Bindings {
     Get.lazyPut(() => ArticleController(), fenix: true);
 
     Get.lazyPut(() => ArticleDetailsController(), fenix: true);
+
+    Get.lazyPut(()=> MessageController(), fenix: true);
+
+    Get.lazyPut(()=> GeneralController(), fenix: true);
+
+    Get.put(GeneralController());
 
 
 

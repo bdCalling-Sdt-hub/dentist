@@ -1,10 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dentist/helper/GenerelError/general_error.dart';
+import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
+import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/view/screens/message/controller/message_controller.dart';
+import 'package:dentist/view/screens/no_internet/no_internet.dart';
+import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ChatBubbleMessage extends StatefulWidget {
   const ChatBubbleMessage({
@@ -31,147 +38,173 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
               opacity: .05,
               fit: BoxFit.contain)),
       padding: const EdgeInsets.all(8.0),
-      child: GetBuilder<MessageController>(builder: (controller) {
+      child: GetBuilder<MessageController>(builder:(controller){
         return ListView.builder(
             reverse: true,
             controller: controller.scrollController,
-            itemCount: controller.inboxChat.length,
-            itemBuilder: (context, index) {
-              if (index < controller.inboxChat.length) {
-                return Column(
-                  //=======================Align the text based on user=================
-                  crossAxisAlignment:
-                      controller.inboxChat[index]["sender"] == "0"
-                          ? CrossAxisAlignment.end
-                          : CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      child: Row(
-                        mainAxisAlignment:
-                            controller.inboxChat[index]["sender"] == "0"
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            width: 8,
-                          ),
+            itemCount: controller.messageList.length,
+            itemBuilder: (context,index) {
+              return Column(
+                //=======================Align the text based on user=================
+                crossAxisAlignment:
+                controller.messageList[index].sender=="patient"
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Row(
+                      mainAxisAlignment:
 
-                          //=============================Type Image=========================
+                      controller.messageList[index].sender=="patient"
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          width: 8,
+                        ),
 
-                          // if (controller
-                          //         .inboxChat[index].content!.messageType ==
-                          //     MessageType.img)
-                          //   Container(
-                          //       height: 260.h,
-                          //       width: 260.w,
-                          //       decoration: BoxDecoration(
-                          //           borderRadius: BorderRadius.circular(20),
-                          //           image: DecorationImage(
-                          //               fit: BoxFit.contain,
-                          //               image: CachedNetworkImageProvider(
-                          //                 controller.inboxChat[index].content!
-                          //                     .message!,
-                          //               )))),
+                        ///=============================Type Image=========================
 
-                          //=============================Type Message=========================
+                        if (controller
+                                .messageList[index].messageType =="image")
+                          Container(
+                              height: 260.h,
+                              width: 260.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                      fit: BoxFit.contain,
+                                      image: NetworkImage(
+                                       "${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
+                                      )
+                                  ))),
 
-                          if (controller.inboxChat[index]["messageType"] ==
-                              "text")
-                            Flexible(
-                              child: Row(
-                                mainAxisAlignment:
-                                    controller.inboxChat[index]["sender"] == "0"
-                                        ? MainAxisAlignment.end
-                                        : MainAxisAlignment.start,
-                                //crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  //=======================Show time if Getting Message=================
+                        ///=============================Type Message=========================
 
-                                  if (controller.inboxChat[index]["sender"] ==
-                                      "0")
-                                    CustomText(
-                                      right: 10.w,
-                                      text: "3.20",
-                                      fontSize: 10.w,
-                                      fontWeight: FontWeight.w200,
-                                    ),
+                        if (
+                        controller.messageList[index].messageType=="text"
+                        )
+                          Flexible(
+                            child: Row(
+                              mainAxisAlignment:
+                              controller.messageList[index].sender=="patient"
+                                  ? MainAxisAlignment.end
+                                  : MainAxisAlignment.start,
+                              //crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                ///=======================Show time if Getting Message=================
 
-                                  //============================Message Body==============================
-
-                                  Flexible(
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 10),
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 10),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: AppColors.dark100),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(8.r),
-                                            topRight: Radius.circular(8.r),
-                                            bottomLeft:
-                                                controller.inboxChat[index]
-                                                            ["sender"] ==
-                                                        "0"
-                                                    ? Radius.circular(8.r)
-                                                    : Radius.circular(0.r),
-                                            bottomRight:
-                                                controller.inboxChat[index]
-                                                            ["sender"] !=
-                                                        "0"
-                                                    ? Radius.circular(8.r)
-                                                    : Radius.circular(0.r),
-                                          ),
-                                          color: controller.inboxChat[index]
-                                                      ["sender"] ==
-                                                  "0"
-                                              ? AppColors.loght100
-                                              : AppColors.dark900),
-                                      child: CustomText(
-                                        maxLines: 10,
-                                        textAlign: TextAlign.left,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        text: controller.inboxChat[index]
-                                            ["message"],
-                                        color: controller.inboxChat[index]
-                                                    ["sender"] ==
-                                                "0"
-                                            ? AppColors.green400
-                                            : AppColors.loght100,
-                                      ),
-                                    ),
+                                if(controller.messageList[index].sender=="patient")
+                                  CustomText(
+                                    right: 10.w,
+                                    text:DateFormat('jm').format( controller.messageList[index].createdAt!.toLocal(),),
+                                    fontSize: 10.w,
+                                    fontWeight: FontWeight.w200,
                                   ),
 
-                                  //=======================Show time if Sending Message=================
+                                ///============================Message Body==============================
 
-                                  if (controller.inboxChat[index]["sender"] !=
-                                      "0")
-                                    CustomText(
-                                      left: 10.w,
-                                      text: "3.20",
-                                      fontSize: 10.w,
-                                      fontWeight: FontWeight.w200,
+                                Flexible(
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 10),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 10),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: AppColors.dark100),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(8.r),
+                                          topRight: Radius.circular(8.r),
+                                          bottomLeft:
+
+                                          controller.messageList[index].sender=="patient"
+                                              ? Radius.circular(8.r)
+                                              : Radius.circular(0.r),
+                                          bottomRight:
+
+                                          controller.messageList[index].sender=="patient"
+                                              ? Radius.circular(8.r)
+                                              : Radius.circular(0.r),
+                                        ),
+                                        color:
+
+                                        controller.messageList[index].sender=="patient"
+                                            ? AppColors.loght100
+                                            : AppColors.dark900),
+                                    child: CustomText(
+                                      maxLines: 10,
+                                      textAlign: TextAlign.left,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      text: //controller.inboxChat[index]
+                                      controller.messageList[index].text??"",
+                                      color:
+                                      controller.messageList[index].sender=="patient"
+                                          ? AppColors.green400
+                                          : AppColors.loght100,
                                     ),
-                                ],
-                              ),
+                                  ),
+                                ),
+
+                                ///=======================Show time if Sending Message=================
+
+                                if (controller.messageList[index].sender!="patient")
+                                  CustomText(
+                                    left: 10.w,
+                                    text: DateFormat('jm').format(controller.messageList[index].createdAt!.toLocal(),),
+                                    fontSize: 10.w,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                              ],
                             ),
-                          const SizedBox(
-                            width: 8,
                           ),
-                        ],
-                      ),
+
+                          if(controller.messageList[index].messageType=="both")
+                            Column(
+                              children: [
+
+                                Container(
+                                    height: 200.h,
+                                    width: 200.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: NetworkImage(
+                                              "${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
+                                            )
+                                        ))),
+
+                                CustomText(
+                                  maxLines: 10,
+                                  textAlign: TextAlign.left,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  text: //controller.inboxChat[index]
+                                  controller.messageList[index].text??"",
+                                  color:
+                                  controller.messageList[index].sender=="patient"
+                                      ? AppColors.green400
+                                      : AppColors.loght100,
+                                ),
+                              ],
+                            ),
+
+
+                        const SizedBox(
+                          width: 8,
+                        ),
+                      ],
                     ),
-                  ],
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
+                  ),
+                ],
+              );
             });
       }),
     );
   }
 }
+

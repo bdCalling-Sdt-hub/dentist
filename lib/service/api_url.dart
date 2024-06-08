@@ -3,6 +3,7 @@ class ApiConstant {
    //static const baseUrl = "http://192.168.10.64:8000"; //This is local url
   static const baseUrl="http://192.168.10.16:5001";
    //static const baseUrl ="https://app.findwork.careers"; //This is live url
+  static const socketUrl="http://192.168.10.16:5001";
 
 ///<=================================== For Auth part ====================>
   static const signIn = "/api/v1/auth/login";
@@ -32,5 +33,10 @@ class ApiConstant {
   static const aboutUs = "/api/v1/rule/about";
   static const privacyPolicy = "/api/v1/rule/privacy-policy";
 
+
+  ///<========================= For messaging ======================>
+  static const creatChat="/api/v1/chat";
+  static const getMessage="/api/v1/message/chatId/";
+  static const sendMessage="/api/v1/message/send-message";
 
  }

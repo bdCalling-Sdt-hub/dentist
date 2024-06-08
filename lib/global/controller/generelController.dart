@@ -1,0 +1,76 @@
+import 'dart:io';
+import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
+import 'package:dentist/service/api_check.dart';
+import 'package:dentist/service/api_client.dart';
+import 'package:dentist/service/api_url.dart';
+import 'package:dentist/utils/AppConst/app_const.dart';
+import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
+class GeneralController extends GetxController{
+
+
+  ///========================== Show Popup Loader ========================
+  showPopUpLoader() {
+    return showDialog(
+        barrierColor: Colors.transparent,
+        context: Get.context!,
+        builder: (_) {
+          return const SizedBox(
+            height: 70,
+            child: AlertDialog(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              content: CustomLoader(),
+            ),
+          );
+        });
+  }
+
+  ///========================== Pick Image ========================
+  Rx<File> imageFile = File("").obs;
+  RxString imagePath = "".obs;
+  selectImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+    await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
+    refresh();
+    if (getImages != null) {
+      imageFile.value = File(getImages.path);
+      imagePath.value = getImages.path;
+    }
+  }
+
+  RxString chatId="".obs;
+
+  createChatId() async {
+
+
+
+    //if(chatId==null && chatId.isEmpty==true){
+    var response = await ApiClient.postData(
+        ApiConstant.creatChat,{}
+    );
+    if (response.statusCode == 200) {
+      await SharePrefsHelper.setString(AppConstants.chatId,response.body["data"]["_id"]);
+
+      chatId.value= response.body["data"]["_id"];
+      refresh();
+
+
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    // }
+  }
+
+  @override
+  void onInit() {
+    createChatId();
+    super.onInit();
+  }
+
+
+}

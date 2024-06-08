@@ -3,13 +3,16 @@ import 'package:dentist/core/dependency/dependency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart';
+import 'service/socket_service.dart';
 import 'view/widgets/DeviceUtils/device_utils.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DeviceUtils.lockDevicePortrait();
   DependancyInjection di = DependancyInjection();
+  SocketApi.init();
   di.dependencies();
   runApp(const MyApp());
 }

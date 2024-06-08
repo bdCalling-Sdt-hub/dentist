@@ -52,7 +52,7 @@ class AuthController extends GetxController{
     );
 
     if (response.statusCode == 200) {
-      SharePrefsHelper.setString(
+    await  SharePrefsHelper.setString(
           AppConstants.bearerToken, response.body["data"]);
         await SharePrefsHelper.setBool(AppConstants.rememberMe,true);
      value=await SharePrefsHelper.getBool(AppConstants.rememberMe);
