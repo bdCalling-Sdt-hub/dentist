@@ -95,7 +95,7 @@ class MyPlan extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: List.generate(
-                          controller.userPackageModel.value.data!.packageDetails!.length,
+                          controller.userPackageModel.value.data?.packageDetails?.length ?? 0,
                               (index) => Row(
                             children: [
 

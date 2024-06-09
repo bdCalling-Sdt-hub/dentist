@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 class MessageAppBar extends StatelessWidget {
   const MessageAppBar({
     super.key,
-    required this.img,
+    // required this.img,
     required this.userName,
   });
 
-  final String img;
+  //final String img;
   final String userName;
 
   @override
@@ -35,13 +35,13 @@ class MessageAppBar extends StatelessWidget {
                   width: 10,
                 ),
 
-                //=============================User Image===============================
-
-                CustomNetworkImage(
-                    boxShape: BoxShape.circle,
-                    imageUrl: img,
-                    height: 50.w,
-                    width: 50.w),
+                // //=============================User Image===============================
+                //
+                // CustomNetworkImage(
+                //     boxShape: BoxShape.circle,
+                //     imageUrl: img,
+                //     height: 50.w,
+                //     width: 50.w),
 
                 Padding(
                   padding: EdgeInsets.only(left: 20.w),
@@ -50,7 +50,7 @@ class MessageAppBar extends StatelessWidget {
                     children: [
                       //=============================User Name===============================
 
-                      CustomText(fontWeight: FontWeight.w600, text: userName),
+                      CustomText(fontWeight: FontWeight.w600, text: userName,fontSize: 20,),
                     ],
                   ),
                 )

@@ -8,6 +8,7 @@ import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/conditionDetails/Controller/article_details_controller.dart';
 import 'package:dentist/view/screens/dentalCondition/Controller/article_controller.dart';
+import 'package:dentist/view/screens/message/message.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -165,7 +166,9 @@ class _ConditionDetailsState extends State<ConditionDetails> {
                           ///========================== Chat Button =======================
 
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => MessageScreen());
+                            },
                             icon: const Row(
                               children: [
                                 CustomImage(

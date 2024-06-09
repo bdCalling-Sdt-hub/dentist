@@ -68,6 +68,7 @@ class AppRoute {
   ///==================== Profile ====================
 
   static const String editProfile = "/editProfile";
+
   static const String profile = "/profile";
 
   ///==================== No Internet ====================

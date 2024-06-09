@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dentist/helper/network_img/network_img.dart';
+import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
@@ -97,7 +98,9 @@ class EditProfile extends StatelessWidget {
                             ):
                                 CustomNetworkImage(
                                 boxShape: BoxShape.circle,
-                                imageUrl: AppConstants.onlineImage,
+                                imageUrl: controller.userProfileModel.value.data?.patient?.profile?.isNotEmpty==true?
+                                "${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile ??""}"
+                                      :AppConstants.onlineImage,
                                 height: 100,
                                 width: 100),
                           ),
