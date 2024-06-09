@@ -47,7 +47,8 @@ class ArticleDetailsController extends GetxController{
       print("This is contact     ${contactModel.data?.contact.toString()}");
       contactModel = ContactModel.fromJson(response.body);
 
-      makingPhoneCall("${contactModel.data?.contact??""}");
+      //makingPhoneCall("${contactModel.data?.contact??""}");
+      //makingPhoneCall(contactModel.data?.contact??"");
 
       update();
       return true;
@@ -75,7 +76,7 @@ class ArticleDetailsController extends GetxController{
 
 ///<============= This is for send email ========================>
 
-  sendEmailToAdmin(){
+  sendEmailToAdmin(String email){
     String? encodeQueryParameters(Map<String, String> params) {
       return params.entries
           .map((MapEntry<String, String> e) =>
@@ -85,7 +86,7 @@ class ArticleDetailsController extends GetxController{
     // ···
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: '',
+      path: email,
       query: encodeQueryParameters(<String, String>{
         'subject':"",
         'body' : ""
@@ -93,5 +94,6 @@ class ArticleDetailsController extends GetxController{
     );
     launchUrl(emailLaunchUri);
   }
+
 
 }

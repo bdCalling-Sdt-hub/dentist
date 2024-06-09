@@ -59,7 +59,7 @@ class _MessageScreenState extends State<MessageScreen> {
       },),
       body:
       Obx(() {
-        switch (inboxController.rxRequestStatus.value) {
+        switch (inboxController.rxRequestStatus.value){
           case Status.loading:
             return const CustomLoader();
           case Status.internetError:

@@ -4,6 +4,7 @@ import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppImg/app_img.dart';
 import 'package:dentist/view/screens/dentalCondition/Controller/article_controller.dart';
+import 'package:dentist/view/screens/no_internet/no_internet.dart';
 import 'package:dentist/view/widgets/condition_card/condition_card.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -20,20 +21,22 @@ class DentalCondition extends StatefulWidget {
 }
 
 class _DentalConditionState extends State<DentalCondition> {
+
   var name = Get.arguments[0];
-  var page = Get.arguments[1];
+
+  var category = Get.arguments[1];
 
   ArticleController articleController = Get.find<ArticleController>();
 
-  final List<Map<String, String>> dentalCondition = [
-    {"img": AppImages.dental1, "title": "Hygienist"},
-    {"img": AppImages.dental2, "title": "Composite Bonding"},
-    {"img": AppImages.dental3, "title": "Implants"},
-  ];
+  // final List<Map<String, String>> dentalCondition = [
+  //   {"img": AppImages.dental1, "title": "Hygienist"},
+  //   {"img": AppImages.dental2, "title": "Composite Bonding"},
+  //   {"img": AppImages.dental3, "title": "Implants"},
+  // ];
 
   @override
   void initState() {
-    articleController.getArticleByCategory(name,page);
+    articleController.getArticleByCategory(name,category);
     super.initState();
   }
 
@@ -53,11 +56,13 @@ class _DentalConditionState extends State<DentalCondition> {
           case Status.loading:
             return const CustomLoader();
           case Status.internetError:
-            return const CustomLoader();
+            return NoInternetScreen(onTap: (){
+              articleController.getArticleByCategory(name,false);
+            });
           case Status.error:
             return GeneralErrorScreen(
               onTap: () {
-                articleController.getArticleByCategory(name,page);
+                articleController.getArticleByCategory(name,category);
               },
             );
           case Status.completed:
@@ -66,8 +71,13 @@ class _DentalConditionState extends State<DentalCondition> {
               child: Column(
                 children: [
                   ///======================== Search Button ========================
-                  const CustomTextField(
+                   CustomTextField(
+                     textInputAction: TextInputAction.done,
                     isPrefixIcon: true,
+                    onSubmit: (value){
+                    articleController.getArticleByCategory(value, false);
+
+                    },
                   ),
                   SizedBox(
                     height: 20.h,
@@ -77,10 +87,9 @@ class _DentalConditionState extends State<DentalCondition> {
 
                   Expanded(
                       child: ListView.builder(
-                    itemCount:
-                        articleController.articleModel.value.data?.length,
+                    itemCount:articleController.articleModel.value.data?.length,
                     //dentalCondition.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (context, index){
                       return ConditionCard(
                           img:
                             "${ApiConstant.baseUrl}${articleController.articleModel.value.data![index].buttonImage ?? ""}",

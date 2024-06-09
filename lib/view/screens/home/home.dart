@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                        return  GestureDetector(
                          onTap: () {
                            Get.toNamed(AppRoute.dentalCondition,
-                           arguments:[homeController.articleCategoryModel.value.data![index].articleCategoryName??"","search"]
+                           arguments:[homeController.articleCategoryModel.value.data![index].articleCategoryName??"",true]
                            );
                          },
                          child: Container(
@@ -263,7 +263,7 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     ///======================= FAQ List =========================
-                    FaqDesign(faqList: faqList),
+                    FaqDesign(),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

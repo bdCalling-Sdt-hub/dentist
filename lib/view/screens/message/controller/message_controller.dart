@@ -5,6 +5,7 @@ import 'package:dentist/service/api_client.dart';
 import 'package:dentist/service/api_url.dart';
 import 'package:dentist/service/socket_service.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
+import 'package:dentist/utils/ToastMsg/toast_message.dart';
 import 'package:dentist/view/screens/message/Model/message_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,6 +59,7 @@ RxBool isComment=false.obs;
   Rx<TextEditingController> sendController = TextEditingController().obs;
 
   sendMessage() async {
+
     // if (sendController.value.text.isEmpty ||
     //     generalController.imagePath.value.isEmpty){
     //
@@ -66,29 +68,32 @@ RxBool isComment=false.obs;
     //generalController.showPopUpLoader();
 
     Map<String,String> body = {
-      "text":sendController.value.text,
+      "text":sendController.value.text.trimLeft(),
       "chatId":generalController.chatId.value,
     };
 
-    var response = generalController.imagePath.isEmpty
-        ? await ApiClient.postData(ApiConstant.sendMessage,body)
-        : await ApiClient.postMultipartData(ApiConstant.sendMessage,body,
-        multipartBody: [
-          MultipartBody("image",File(generalController.imagePath.value))
-        ]);
-    if (response.statusCode == 200) {
+    if(sendController.value.text.trimLeft().isNotEmpty==true || generalController.imagePath.value.isNotEmpty==true){
+      var response = generalController.imagePath.isEmpty
+          ? await ApiClient.postData(ApiConstant.sendMessage,body)
+          : await ApiClient.postMultipartData(ApiConstant.sendMessage,body,
+          multipartBody: [
+            MultipartBody("image",File(generalController.imagePath.value))
+          ]);
+      if (response.statusCode == 200) {
 
-      sendController.value.clear();
-      generalController.imagePath.value = "";
-      update();
-     // navigator!.pop();
-    } else {
-     // navigator!.pop();
-      ApiChecker.checkApi(response);
+        sendController.value.clear();
+        generalController.imagePath.value = "";
+        update();
+        // navigator!.pop();
+      } else {
+        // navigator!.pop();
+        ApiChecker.checkApi(response);
+      }
+    }
+    else{
+      toastMessage(message:"Please write something");
     }
   }
-
-
   ///<================================ Get my chat =============================>
 
  // RxList<MessageDatum> getMyChatModel = <MessageDatum>[].obs;
@@ -99,14 +104,10 @@ RxBool isComment=false.obs;
 
       messageList.value = List<MessageDatum>.from(
           response.body["data"].map((x) => MessageDatum.fromJson(x)));
-
-
       if (messageList.isNotEmpty) {
         currentPage.value = response.body['pagination']['page'];
         totalPage.value = response.body['pagination']['totalPage'];
       }
-
-
       setRxRequestStatus(Status.completed);
 
     } else {
@@ -157,8 +158,6 @@ RxBool isComment=false.obs;
   }
 
 
-
-
   ///===================Pagination Scroll Controller===============
 
   Future<void> addScrollListener() async {
@@ -167,8 +166,6 @@ RxBool isComment=false.obs;
       loadMore();
     }
   }
-
-
 
 
   @override

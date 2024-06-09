@@ -129,7 +129,7 @@ class AppRoute {
     GetPage(name: faq, page: () => FAQScreen()),
 
     ///==================== Search Screen ====================
-    GetPage(name: search, page: () => const SearchScreen()),
+    GetPage(name: search, page: () =>  SearchScreen()),
 
     ///==================== Current Offer Screen ====================
 

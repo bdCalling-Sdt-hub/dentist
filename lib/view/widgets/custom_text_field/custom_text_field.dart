@@ -20,6 +20,7 @@ class CustomTextField extends StatefulWidget {
     this.fillColor = Colors.transparent,
     this.suffixIcon,
     this.onChanged,
+    this.onSubmit,
     this.suffixIconColor,
     this.borderRadius = 8,
     this.fieldBorderColor = AppColors.loght700,
@@ -45,6 +46,7 @@ class CustomTextField extends StatefulWidget {
   final int? maxLines;
   final int? maxLength;
 
+
   final FormFieldValidator? validator;
   final String? hintText;
   final String labelText;
@@ -56,6 +58,8 @@ class CustomTextField extends StatefulWidget {
   final Color fieldBorderColor;
   final Color focusBorderColor;
   final void Function(String)? onChanged;
+ // final  void Function(String)? onSubmited;
+  final  Function(String)? onSubmit;
   final bool isPassword;
   final bool isPrefixIcon;
   final VoidCallback onTapClick;
@@ -79,6 +83,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
           onTap: () {
             widget.onTapClick();
           },
+          onFieldSubmitted:(value) {
+           widget.onSubmit!(value);
+          },
+          // onFieldSubmitted:(value){
+          //   widget.onSubmited!(value);
+          // },
           onChanged: widget.onChanged,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           readOnly: widget.readOnly,

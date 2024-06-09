@@ -7,9 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class FaqDesign extends StatelessWidget {
-  FaqDesign({super.key, required this.faqList});
+  FaqDesign({super.key,});
 
-  final List<Map<String, String>> faqList;
+ // final List<Map<String, String>> faqList;
 
   final HomeController homeController = Get.find<HomeController>();
   @override

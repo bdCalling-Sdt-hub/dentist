@@ -4,6 +4,7 @@ import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
+import 'package:dentist/utils/ToastMsg/toast_message.dart';
 import 'package:dentist/view/screens/message/controller/message_controller.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text_field/custom_text_field.dart';
@@ -127,7 +128,11 @@ class MessageInputField extends StatelessWidget {
 
                           controller.sendLoading==true?CustomLoader():GestureDetector(
                             onTap:(){
-                              controller.sendMessage();
+                              if(controller.sendController.value.text.isNotEmpty==true || controller.generalController.imagePath.value.isNotEmpty==true){
+                                controller.sendMessage();
+                              }else{
+                                toastMessage(message:"Please write something");
+                              }
                             },
                             child: Container(
                               margin: EdgeInsets.only(left: 4.w),

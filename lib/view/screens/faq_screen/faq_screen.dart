@@ -6,21 +6,21 @@ import 'package:flutter/material.dart';
 class FAQScreen extends StatelessWidget {
   FAQScreen({super.key});
 
-  final List<Map<String, String>> faqList = [
-    {
-      "que": "How dose this app work?",
-      "ans": "This is an dummy answer, To show in UI"
-    },
-    {
-      "que": "How can i cancle my order",
-      "ans": "This is an dummy answer, To show in UI"
-    },
-    {
-      "que": "Is my data secure?",
-      "ans":
-          "This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, "
-    },
-  ];
+  // final List<Map<String, String>> faqList = [
+  //   {
+  //     "que": "How dose this app work?",
+  //     "ans": "This is an dummy answer, To show in UI"
+  //   },
+  //   {
+  //     "que": "How can i cancle my order",
+  //     "ans": "This is an dummy answer, To show in UI"
+  //   },
+  //   {
+  //     "que": "Is my data secure?",
+  //     "ans":
+  //         "This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, "
+  //   },
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,9 @@ class FAQScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        child: FaqDesign(faqList: faqList),
+        child: FaqDesign(
+           // faqList: faqList
+        ),
       ),
     );
   }

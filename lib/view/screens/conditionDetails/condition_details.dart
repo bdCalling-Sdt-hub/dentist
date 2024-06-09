@@ -1,13 +1,10 @@
-import 'package:dentist/core/app_routes/app_routes.dart';
 import 'package:dentist/helper/GenerelError/general_error.dart';
-import 'package:dentist/helper/network_img/network_img.dart';
 import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/conditionDetails/Controller/article_details_controller.dart';
-import 'package:dentist/view/screens/dentalCondition/Controller/article_controller.dart';
 import 'package:dentist/view/screens/message/message.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
@@ -25,32 +22,34 @@ class ConditionDetails extends StatefulWidget {
 }
 
 class _ConditionDetailsState extends State<ConditionDetails> {
-  ArticleDetailsController articleDetailsController=Get.find<ArticleDetailsController>();
+  ArticleDetailsController articleDetailsController =
+      Get.find<ArticleDetailsController>();
 
-  PageController controller=PageController();
+  PageController controller = PageController();
 
   final String title = Get.arguments[1];
 
-  var id=Get.arguments[0];
+  var id = Get.arguments[0];
 
   @override
   void initState() {
     articleDetailsController.getArticleDetails(id);
+    articleDetailsController.getContact();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: CustomText(
           maxLines: 2,
-          text:title,
+          text: title,
           fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
       ),
-
-      body:  Obx(() {
+      body: Obx(() {
         switch (articleDetailsController.rxRequestStatus.value) {
           case Status.loading:
             return const CustomLoader();
@@ -65,15 +64,15 @@ class _ConditionDetailsState extends State<ConditionDetails> {
           case Status.completed:
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ///=========================== Title ========================
 
                     const CustomText(
-                      text:
-                      "",
+                      text: "",
                       fontSize: 14,
                       maxLines: 2,
                       bottom: 16,
@@ -82,54 +81,67 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                     ///========================= Post Image ======================
                     Container(
-                      height:250.h,
+                      height: 250.h,
                       width: double.maxFinite,
                       child: Stack(
                         children: [
                           PageView.builder(
-                              onPageChanged: (value){
-                                articleDetailsController.currentImage.value=value+1;
+                              onPageChanged: (value) {
+                                articleDetailsController.currentImage.value =
+                                    value + 1;
 
                                 articleDetailsController.currentImage.refresh();
 
-                                print("=========================== this is image index =-=-=   ${articleDetailsController.currentImage}");
+                                print(
+                                    "=========================== this is image index =-=-=   ${articleDetailsController.currentImage}");
                               },
-                              itemCount:articleDetailsController.artiCleDetailsModel.value.data!.articleSlider?.length,
-                              controller:controller,
-                              itemBuilder:(context, index){
+                              itemCount: articleDetailsController
+                                  .artiCleDetailsModel
+                                  .value
+                                  .data!
+                                  .articleSlider
+                                  ?.length,
+                              controller: controller,
+                              itemBuilder: (context, index) {
                                 return Container(
                                   margin: EdgeInsets.only(right: 8.w),
                                   height: 200.h,
-                                  width:330,
+                                  width: 330,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      fit:BoxFit.fill,
+                                      fit: BoxFit.fill,
                                       image: NetworkImage(
-                                      "${ApiConstant.baseUrl}${articleDetailsController.artiCleDetailsModel.value.data!.articleSlider![index].toString()}"
-                                      ),
+                                          "${ApiConstant.baseUrl}${articleDetailsController.artiCleDetailsModel.value.data!.articleSlider![index].toString()}"),
                                     ),
-                                    borderRadius:BorderRadius.circular(8),
-                                    border: Border.all(color: AppColors.loght600),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border:
+                                        Border.all(color: AppColors.loght600),
                                   ),
                                 );
                               }),
-                            Positioned(
-                            top:200,
+                          Positioned(
+                            top: 200,
                             left: 300,
-                            child:CustomText(
-                              text:"${articleDetailsController.currentImage}/${articleDetailsController.artiCleDetailsModel.value.data!.articleSlider?.length}",
-                              color:AppColors.loght50,fontSize: 18,),
+                            child: CustomText(
+                              text:
+                                  "${articleDetailsController.currentImage}/${articleDetailsController.artiCleDetailsModel.value.data!.articleSlider?.length}",
+                              color: AppColors.loght50,
+                              fontSize: 18,
+                            ),
                           ),
                         ],
                       ),
                     ),
+
                     ///=========================== Description ========================
 
-                      CustomText(
+                    CustomText(
                       top: 16,
                       textAlign: TextAlign.justify,
                       maxLines: 100,
-                      text:articleDetailsController.artiCleDetailsModel.value.data?.articleDetails??"",
+                      text: articleDetailsController
+                              .artiCleDetailsModel.value.data?.articleDetails ??
+                          "",
                       fontSize: 14,
                       bottom: 16,
                     ),
@@ -149,8 +161,11 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                           IconButton(
                             onPressed: () {
-                             articleDetailsController.getContact();
-                             print("Hiiiiiiiiiiiiiii");
+                              //articleDetailsController.getContact();
+                              articleDetailsController.makingPhoneCall(
+                                  articleDetailsController
+                                          .contactModel.data?.contact ??
+                                      "");
                             },
                             icon: const Row(
                               children: [
@@ -184,7 +199,10 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                           IconButton(
                             onPressed: () {
-                           articleDetailsController.sendEmailToAdmin();
+                              articleDetailsController.sendEmailToAdmin(
+                                  articleDetailsController
+                                          .contactModel.data?.email ??
+                                      "");
                             },
                             icon: const Row(
                               children: [
@@ -196,7 +214,6 @@ class _ConditionDetailsState extends State<ConditionDetails> {
                               ],
                             ),
                           )
-
                         ],
                       ),
                     )
@@ -206,7 +223,6 @@ class _ConditionDetailsState extends State<ConditionDetails> {
             );
         }
       }),
-
     );
   }
 }

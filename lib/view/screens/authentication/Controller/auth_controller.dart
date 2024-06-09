@@ -45,12 +45,10 @@ class AuthController extends GetxController{
       'password':signInPassController.text,
       'pin':signInPinController.text,
     };
-
     var response = await ApiClient.postData(
       ApiConstant.signIn,
       body,
     );
-
     if (response.statusCode == 200) {
     await  SharePrefsHelper.setString(
           AppConstants.bearerToken, response.body["data"]);
