@@ -25,10 +25,26 @@ class ChatBubbleMessage extends StatefulWidget {
 }
 
 class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
+
+
+  MessageController controller=Get.find<MessageController>();
+
   @override
   void dispose() {
-    // voiceController.dispose();
+    controller.scrollController.dispose();
     super.dispose();
+  }
+
+  // @override
+  // void dispose() {
+  //   // voiceController.dispose();
+  //   super.dispose();
+  // }
+
+  void _scrollToBottom() {
+    if (controller.scrollController.hasClients) {
+      controller.scrollController.jumpTo(controller.scrollController.position.maxScrollExtent);
+    }
   }
 
   @override
@@ -39,12 +55,14 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
               image: AssetImage(AppIcons.logo),
               opacity: .05,
               fit: BoxFit.contain)),
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(8.0),
       child: GetBuilder<MessageController>(builder:(controller){
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _scrollToBottom();
+        });
         return ListView.builder(
-            reverse: true,
             controller: controller.scrollController,
-            itemCount: controller.messageList.length,
+            itemCount: controller.messageList?.length??0,
             itemBuilder: (context,index) {
               return Column(
                 //=======================Align the text based on user=================

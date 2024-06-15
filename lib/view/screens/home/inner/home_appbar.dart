@@ -78,11 +78,11 @@ class HomeAppBar extends StatelessWidget {
                       Row(
                         children: [
                           ///<==================== notification ====================>
-                          IconButton(
-                              onPressed: () {
-                                Get.toNamed(AppRoute.notification);
-                              },
-                              icon: const Icon(Icons.notifications)),
+                          // IconButton(
+                          //     onPressed: () {
+                          //       Get.toNamed(AppRoute.notification);
+                          //     },
+                          //     icon: const Icon(Icons.notifications)),
 
                           ///<==================== Menu Bar ====================>
                           IconButton(

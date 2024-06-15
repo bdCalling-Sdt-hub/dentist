@@ -122,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       children: [
                         CarouselSlider(
-                          options: CarouselOptions(
+                          options:CarouselOptions(
                             height: 160.0.h,
                             autoPlay: true,
                             autoPlayCurve: Curves.ease,

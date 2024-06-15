@@ -38,14 +38,27 @@ RxBool isComment=false.obs;
   RxList selectedMembers = [].obs;
 
 
+
+  void scrollToBottom() {
+    if (scrollController.hasClients) {
+      Future.delayed(Duration(milliseconds: 300), () {
+        scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      });
+    }
+  }
+
+
+
+
   listenToNewMsg(){
     ///========================= Listen to Socket =======================
-    SocketApi.socket.on("message::${generalController.chatId.value}", (data) {
+    SocketApi.socket.on("message::${generalController.chatId.value}",(data){
       debugPrint("Socket Res=================>>>>>>>>>>>>>$data");
 
       MessageDatum newMsg = MessageDatum.fromJson(data);
-      messageList.insert(0, newMsg);
+      messageList.insert(0,newMsg);
       messageList.refresh();
+      scrollToBottom();
       update();
     });
   }
@@ -79,12 +92,17 @@ RxBool isComment=false.obs;
           multipartBody: [
             MultipartBody("image",File(generalController.imagePath.value))
           ]);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200){
 
         sendController.value.clear();
-        generalController.imagePath.value = "";
+        generalController.imagePath.value ="";
+         getMyChat();
+        // var newMessage = MessageDatum.fromJson(response.body["data"]);
+        // messageList.insert(0,newMessage);
+        messageList.refresh(); // Refresh the UI
+        scrollToBottom();// Refresh the UI
         update();
-        // navigator!.pop();
+
       } else {
         // navigator!.pop();
         ApiChecker.checkApi(response);
@@ -101,13 +119,13 @@ RxBool isComment=false.obs;
    getMyChat() async {
     var response = await ApiClient.getData("${ApiConstant.getMessage}${generalController.chatId.value}");
     if (response.statusCode == 200) {
-
       messageList.value = List<MessageDatum>.from(
           response.body["data"].map((x) => MessageDatum.fromJson(x)));
-      if (messageList.isNotEmpty) {
-        currentPage.value = response.body['pagination']['page'];
-        totalPage.value = response.body['pagination']['totalPage'];
-      }
+         refresh();
+      // if (messageList.isNotEmpty) {
+      //   currentPage.value = response.body['pagination']['page'];
+      //   totalPage.value = response.body['pagination']['totalPage'];
+      // }
       setRxRequestStatus(Status.completed);
 
     } else {
@@ -122,48 +140,46 @@ RxBool isComment=false.obs;
   }
 
 
-
-
   ///============================= Load More Data ============================
 
-  var isLoadMoreRunning = false.obs;
-  RxInt page = 1.obs;
-
-  loadMore() async {
-    debugPrint("============== Load More Message ================");
-    if (rxRequestStatus.value != Status.loading &&
-        isLoadMoreRunning.value == false &&
-        totalPage != currentPage) {
-      isLoadMoreRunning(true);
-      page.value += 1;
-
-      Response response = await ApiClient.getData(
-        "${ApiConstant.getMessage}${generalController.chatId.value}?page=$page",
-      );
-      currentPage.value = response.body['pagination']['page'];
-      totalPage.value = response.body['pagination']['totalPage'];
-
-      if (response.statusCode == 200) {
-        var demoList = List<MessageDatum>.from(response.body["data"]
-            .map((x) => MessageDatum.fromJson(x)));
-        messageList.addAll(demoList);
-
-        messageList.refresh();
-        refresh();
-      } else {
-        ApiChecker.checkApi(response);
-      }
-      isLoadMoreRunning(false);
-    }
-  }
+  //
+  // var isLoadMoreRunning = false.obs;
+  // RxInt page = 1.obs;
+  //
+  // loadMore() async {
+  //   debugPrint("============== Load More Message ================");
+  //   if (rxRequestStatus.value != Status.loading &&
+  //       isLoadMoreRunning.value == false &&
+  //       totalPage != currentPage) {
+  //     isLoadMoreRunning(true);
+  //     page.value += 1;
+  //
+  //     Response response = await ApiClient.getData(
+  //       "${ApiConstant.getMessage}${generalController.chatId.value}?page=$page",
+  //     );
+  //     currentPage.value = response.body['pagination']['page'];
+  //     totalPage.value = response.body['pagination']['totalPage'];
+  //
+  //     if (response.statusCode == 200) {
+  //       var demoList = List<MessageDatum>.from(response.body["data"]
+  //           .map((x) => MessageDatum.fromJson(x)));
+  //       messageList.addAll(demoList);
+  //       messageList.refresh();
+  //       refresh();
+  //     } else {
+  //       ApiChecker.checkApi(response);
+  //     }
+  //     isLoadMoreRunning(false);
+  //   }
+  // }
 
 
   ///===================Pagination Scroll Controller===============
 
-  Future<void> addScrollListener() async {
+  Future<void> addScrollListener() async{
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      loadMore();
+      //loadMore();
     }
   }
 
@@ -171,8 +187,8 @@ RxBool isComment=false.obs;
   @override
   void onInit() {
   listenToNewMsg();
-  scrollController.addListener(addScrollListener);
   getMyChat();
+  scrollController.addListener(addScrollListener);
   super.onInit();
   }
 
