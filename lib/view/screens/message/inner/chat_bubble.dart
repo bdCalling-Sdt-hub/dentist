@@ -61,6 +61,7 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
           _scrollToBottom();
         });
         return ListView.builder(
+         // reverse: true,
             controller: controller.scrollController,
             itemCount: controller.messageList?.length??0,
             itemBuilder: (context,index) {

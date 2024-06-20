@@ -43,7 +43,7 @@ RxBool isComment=false.obs;
 
   void scrollToBottom() {
     if (scrollController.hasClients) {
-      Future.delayed(Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 300), () {
         scrollController.jumpTo(scrollController.position.maxScrollExtent);
       });
     }
@@ -55,9 +55,9 @@ RxBool isComment=false.obs;
       debugPrint("Socket Res=================>>>>>>>>>>>>>$data");
 
       MessageDatum newMsg = MessageDatum.fromJson(data);
-      messageList.insert(0,newMsg);
+      messageList.insert(messageList.length,newMsg);
       messageList.refresh();
-      scrollToBottom();
+     // scrollToBottom();
       update();
     });
   }
@@ -94,11 +94,11 @@ RxBool isComment=false.obs;
 
         sendController.value.clear();
         generalController.imagePath.value ="";
-         getMyChat();
+        // getMyChat();
         // var newMessage = MessageDatum.fromJson(response.body["data"]);
         // messageList.insert(0,newMessage);
-        messageList.refresh(); // Refresh the UI
-        scrollToBottom();// Refresh the UI
+        // messageList.refresh(); // Refresh the UI
+        // scrollToBottom();// Refresh the UI
         update();
 
       } else {
