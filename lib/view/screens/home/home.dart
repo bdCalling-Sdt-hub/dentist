@@ -10,6 +10,7 @@ import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/screens/home/inner/home_appbar.dart';
 import 'package:dentist/view/screens/home/inner/side_drawer.dart';
+import 'package:dentist/view/screens/notification/Controller/notification_controller.dart';
 import 'package:dentist/view/widgets/custom_faq_design/custom_faq_design.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
@@ -33,6 +34,7 @@ class HomeScreen extends StatelessWidget {
   ];
 
   final HomeController homeController = Get.find<HomeController>();
+
 
   final List<Map<String, String>> faqList = [
     {
@@ -110,6 +112,7 @@ class HomeScreen extends StatelessWidget {
             );
           case Status.completed:
             return SingleChildScrollView(
+
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
@@ -300,9 +303,23 @@ class HomeScreen extends StatelessWidget {
                                 (index) {
                           return Row(
                               children: [
-                                CustomNetworkImage(
-                                 imageUrl:"${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
-                                  height: 250.h, width: 150.w),
+
+                                Container(
+                                 height:250.h,
+                                 width: 150.w,
+                                 decoration:BoxDecoration(
+                                 image: DecorationImage(
+                                 fit: BoxFit.fill,
+                                 image:
+                                  NetworkImage(
+                                 "${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
+                                  ) ,
+                                 // CustomNetworkImage(
+                                 //     imageUrl:"${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
+                                 //     height: 250.h, width: 150.w)
+                                 )
+                                 ),
+                                ),
                                 SizedBox(width: 16.w,)
 ,                              ],
                             );

@@ -14,9 +14,9 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>{
 
-  navigate() async {
+  navigate()async{
     bool? onBoarding = await SharePrefsHelper.getBool(AppConstants.onBoard);
 
     bool? isRememberMe =
@@ -28,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
          Get.offAllNamed(AppRoute.home);
        }else{Get.offAllNamed(AppRoute.signIn);
        }
-
      }else{
        Get.offAllNamed(AppRoute.onBoarding);
      }

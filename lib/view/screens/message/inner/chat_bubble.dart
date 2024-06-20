@@ -57,7 +57,7 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
               fit: BoxFit.contain)),
       padding:  EdgeInsets.all(8.0),
       child: GetBuilder<MessageController>(builder:(controller){
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_){
           _scrollToBottom();
         });
         return ListView.builder(

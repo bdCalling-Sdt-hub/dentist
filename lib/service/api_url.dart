@@ -39,4 +39,10 @@ class ApiConstant {
   static const getMessage="/api/v1/message/chatId/";
   static const sendMessage="/api/v1/message/send-message";
 
+  ///<===================== This is for notification =================>
+
+  static const getNotification="/api/v1/notifications";
+
+  static const readNotification="/api/v1/notifications/read-notifications";
+
  }

@@ -50,11 +50,23 @@ class CurrentOffer extends StatelessWidget {
                   Get.toNamed(AppRoute.offerDetails,
                       arguments: controller.offerModel.value.data![index].id.toString());
                 },
-                child:
-                CustomNetworkImage(
-                    imageUrl:"${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
-                    height: 100.h,
-                    width: 100.w)
+                child: Container(
+                height: 250.h,
+                width: 150.w,
+                decoration: BoxDecoration(
+                image: DecorationImage(
+                fit: BoxFit.fill,
+                image:
+               NetworkImage(
+                 "${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
+               ),
+                )
+                ),
+                ),
+                // CustomNetworkImage(
+                //     imageUrl:"${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
+                //     height: 100.h,
+                //     width: 100.w)
                 // CustomImage(
                 //   fit: BoxFit.fill,
                 //   sizeWidth: 100.w,

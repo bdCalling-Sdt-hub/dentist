@@ -1,3 +1,4 @@
+import 'package:dentist/global/controller/generelController.dart';
 import 'package:dentist/helper/shared_prefe/shared_prefe.dart';
 import 'package:dentist/service/api_check.dart';
 import 'package:dentist/service/api_client.dart';
@@ -216,6 +217,36 @@ class HomeController extends GetxController with GetxServiceMixin {
     }
   }
 
+
+
+  ///<=================== This is for creat chat Id =========================>
+  RxString chatId="".obs;
+
+  createChatId() async {
+    String id=await SharePrefsHelper.getString(AppConstants.bearerToken);
+
+    //if(chatId==null && chatId.isEmpty==true){
+
+    // }
+    if(id!=null || id.isNotEmpty==true) {
+      var response = await ApiClient.postData(
+          ApiConstant.creatChat,{}
+      );
+      if (response.statusCode == 200) {
+        await SharePrefsHelper.setString(
+            AppConstants.chatId, response.body["data"]["_id"]);
+        print(
+            " this is my chatId============      =============================${response
+                .body["data"]["_id"]}");
+        chatId.value = response.body["data"]["_id"];
+        refresh();
+      } else {
+        ApiChecker.checkApi(response);
+      }
+    }
+  }
+
+
   homeApi()async{
    bool profile= await getUserProfileData() ;
    bool banner= await  getBanner(); ;
@@ -228,17 +259,12 @@ class HomeController extends GetxController with GetxServiceMixin {
      setRxRequestStatus(Status.completed);
      refresh();
    }
-
-
-
   }
-
-
   @override
   void onInit() {
     homeApi();
+    createChatId();
     super.onInit();
   }
-
 
 }

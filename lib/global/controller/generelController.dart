@@ -32,7 +32,7 @@ class GeneralController extends GetxController{
   ///========================== Pick Image ========================
   Rx<File> imageFile = File("").obs;
   RxString imagePath = "".obs;
-  selectImage() async {
+  selectImage()async{
     final ImagePicker picker = ImagePicker();
     final XFile? getImages =
     await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
@@ -43,32 +43,36 @@ class GeneralController extends GetxController{
     }
   }
 
-  RxString chatId="".obs;
-
-  createChatId() async {
-
-
-
-    //if(chatId==null && chatId.isEmpty==true){
-    var response = await ApiClient.postData(
-        ApiConstant.creatChat,{}
-    );
-    if (response.statusCode == 200) {
-      await SharePrefsHelper.setString(AppConstants.chatId,response.body["data"]["_id"]);
-
-      chatId.value= response.body["data"]["_id"];
-      refresh();
-
-
-    } else {
-      ApiChecker.checkApi(response);
-    }
-    // }
-  }
+  // RxString chatId="".obs;
+  //
+  // createChatId() async {
+  //    String id=await SharePrefsHelper.getString(AppConstants.bearerToken);
+  //
+  //   //if(chatId==null && chatId.isEmpty==true){
+  //
+  //   // }
+  //   if(id!=null || id.isNotEmpty==true) {
+  //     var response = await ApiClient.postData(
+  //         ApiConstant.creatChat,{}
+  //     );
+  //     if (response.statusCode == 200) {
+  //       await SharePrefsHelper.setString(
+  //           AppConstants.chatId, response.body["data"]["_id"]);
+  //       print(
+  //           " this is my chatId============      =============================${response
+  //               .body["data"]["_id"]}");
+  //       chatId.value = response.body["data"]["_id"];
+  //       refresh();
+  //     } else {
+  //       ApiChecker.checkApi(response);
+  //     }
+  //   }
+  // }
 
   @override
-  void onInit() {
-    createChatId();
+  void onInit(){
+    //createChatId();
+    // print("This is my chat ID: =-=-==--=-=-===-=-=-=-==-   ${chatId.value}");
     super.onInit();
   }
 

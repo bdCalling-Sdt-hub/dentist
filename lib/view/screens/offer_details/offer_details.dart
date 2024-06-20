@@ -164,10 +164,23 @@ class _OfferDetailsState extends State<OfferDetails> {
                   ///==================== Image =====================
                   Align(
                     alignment: Alignment.center,
-                    child: CustomNetworkImage(
-                      imageUrl: "${ApiConstant.baseUrl}$offerImage",
-                      height: 160.h,
-                      width: 110.w,
+                    child: Container(
+                      height: 250.h,
+                      width: 250.w,
+                      decoration: BoxDecoration(
+                      image:  DecorationImage(
+                      fit: BoxFit.fill,
+                      image:
+                      NetworkImage(
+                      "${ApiConstant.baseUrl}$offerImage",
+                      ),
+                      ),
+                      ),
+                      // child: CustomNetworkImage(
+                      //   imageUrl: "${ApiConstant.baseUrl}$offerImage",
+                      //   height: 160.h,
+                      //   width: 110.w,
+                      // ),
                     ),
                   ),
 

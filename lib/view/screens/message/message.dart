@@ -45,7 +45,8 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+     //resizeToAvoidBottomInset: true,
+        appBar: AppBar(
          iconTheme: const IconThemeData(color: AppColors.loght50),
         bottomOpacity: 10,
        backgroundColor: AppColors.green900,
@@ -54,7 +55,7 @@ class _MessageScreenState extends State<MessageScreen> {
        elevation:20,
       ),
 
-      bottomNavigationBar:  MessageInputField(onTap: () {
+      bottomNavigationBar:  MessageInputField(onTap:(){
        inboxController.sendMessage();
       },),
       body:
@@ -75,7 +76,7 @@ class _MessageScreenState extends State<MessageScreen> {
               },
             );
           case Status.completed:
-            return  const Column(children: [
+            return  const Column(children:[
         ///============================== App Bar ==============================
        //  MessageAppBar(
        // // img: AppConstants.onlineImage,
@@ -84,7 +85,7 @@ class _MessageScreenState extends State<MessageScreen> {
 
         ///============================== Chat Bubble ==============================
 
-        Expanded(child:ChatBubbleMessage()),
+             Expanded(child:ChatBubbleMessage()),
 
         // ///========================== BackGround Image ============================
 

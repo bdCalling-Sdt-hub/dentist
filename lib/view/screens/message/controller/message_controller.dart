@@ -6,6 +6,7 @@ import 'package:dentist/service/api_url.dart';
 import 'package:dentist/service/socket_service.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/ToastMsg/toast_message.dart';
+import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/screens/message/Model/message_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,10 @@ class MessageController extends GetxController {
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
 
   ScrollController scrollController = ScrollController();
+
   GeneralController generalController = Get.find<GeneralController>();
+  HomeController homeController = Get.find<HomeController>();
+
   RxInt totalPage = 0.obs;
   RxInt currentPage = 0.obs;
 
@@ -37,8 +41,6 @@ RxBool isComment=false.obs;
 
   RxList selectedMembers = [].obs;
 
-
-
   void scrollToBottom() {
     if (scrollController.hasClients) {
       Future.delayed(Duration(milliseconds: 300), () {
@@ -47,12 +49,9 @@ RxBool isComment=false.obs;
     }
   }
 
-
-
-
   listenToNewMsg(){
     ///========================= Listen to Socket =======================
-    SocketApi.socket.on("message::${generalController.chatId.value}",(data){
+    SocketApi.socket.on("message::${homeController.chatId.value}",(data){
       debugPrint("Socket Res=================>>>>>>>>>>>>>$data");
 
       MessageDatum newMsg = MessageDatum.fromJson(data);
@@ -62,7 +61,6 @@ RxBool isComment=false.obs;
       update();
     });
   }
-
 
 
   ///========================= Send Message =======================
@@ -82,7 +80,7 @@ RxBool isComment=false.obs;
 
     Map<String,String> body = {
       "text":sendController.value.text.trimLeft(),
-      "chatId":generalController.chatId.value,
+      "chatId":homeController.chatId.value,
     };
 
     if(sendController.value.text.trimLeft().isNotEmpty==true || generalController.imagePath.value.isNotEmpty==true){
@@ -109,7 +107,9 @@ RxBool isComment=false.obs;
       }
     }
     else{
+
       toastMessage(message:"Please write something");
+
     }
   }
   ///<================================ Get my chat =============================>
@@ -117,7 +117,7 @@ RxBool isComment=false.obs;
  // RxList<MessageDatum> getMyChatModel = <MessageDatum>[].obs;
 
    getMyChat() async {
-    var response = await ApiClient.getData("${ApiConstant.getMessage}${generalController.chatId.value}");
+    var response = await ApiClient.getData("${ApiConstant.getMessage}${homeController.chatId.value}");
     if (response.statusCode == 200) {
       messageList.value = List<MessageDatum>.from(
           response.body["data"].map((x) => MessageDatum.fromJson(x)));
@@ -126,6 +126,7 @@ RxBool isComment=false.obs;
       //   currentPage.value = response.body['pagination']['page'];
       //   totalPage.value = response.body['pagination']['totalPage'];
       // }
+
       setRxRequestStatus(Status.completed);
 
     } else {
@@ -139,9 +140,7 @@ RxBool isComment=false.obs;
     }
   }
 
-
   ///============================= Load More Data ============================
-
   //
   // var isLoadMoreRunning = false.obs;
   // RxInt page = 1.obs;
@@ -173,12 +172,11 @@ RxBool isComment=false.obs;
   //   }
   // }
 
-
   ///===================Pagination Scroll Controller===============
 
   Future<void> addScrollListener() async{
     if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+        scrollController.position.maxScrollExtent){
       //loadMore();
     }
   }
