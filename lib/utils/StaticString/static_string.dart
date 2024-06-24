@@ -21,7 +21,7 @@ class AppStaticStrings {
 
   static const getStarted = "Get Started";
   static const welcomeBack = "Welcome Back !";
-  static const pleaseEnterYour = "Please Enter Your provided informations ";
+  static const pleaseEnterYour = "Please Enter Your provided informations";
   static const email = "Email";
   static const emailConfirmation = "Email Confirmation";
   static const enterYourEmail = "Enter your email here";
@@ -87,7 +87,7 @@ class AppStaticStrings {
   static const userProfile = "User Profile";
   static const name = "Name";
   static const contactNo = "Contact No";
-  static const dateofbirth = "Date of birthe";
+  static const dateofbirth = "Date of Birth";
   static const age = "Age";
   static const gender = "Gender";
   static const plan = "Plan";

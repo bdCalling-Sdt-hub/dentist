@@ -58,7 +58,9 @@ class HomeAppBar extends StatelessWidget{
                         CustomNetworkImage(
                             boxShape: BoxShape.circle,
                             imageUrl:
-                                "${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile ?? ""}",
+                            (controller.userProfileModel.value.data?.patient?.profile?.startsWith('https') ??false)?
+                            controller.userProfileModel.value.data?.patient?.profile?? ""
+                            :"${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile ?? ""}",
                             height: 60,
                             width: 60),
 

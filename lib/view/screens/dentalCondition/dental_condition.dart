@@ -41,12 +41,12 @@ class _DentalConditionState extends State<DentalCondition> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const CustomText(
-          text: "Condition",
+        title:CustomText(
+          text:"${name}",
           fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
@@ -92,7 +92,7 @@ class _DentalConditionState extends State<DentalCondition> {
                     itemBuilder: (context, index){
                       return ConditionCard(
                           img:
-                            "${ApiConstant.baseUrl}${articleController.articleModel.value.data![index].buttonImage ?? ""}",
+                            "${ApiConstant.baseUrl}${articleController.articleModel.value.data![index].buttonImage ??""}",
                             title: articleController.articleModel.value
                             .data![index].articleName??"",
                             onTap: () {

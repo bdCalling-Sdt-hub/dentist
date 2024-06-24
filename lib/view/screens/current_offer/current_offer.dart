@@ -34,50 +34,47 @@ class CurrentOffer extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      body: GetBuilder<HomeController>(
-        builder: (controller) {
-          return GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            itemCount: controller.offerModel.value.data!.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisExtent: 250,
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoute.offerDetails,
-                      arguments: controller.offerModel.value.data![index].id.toString());
-                },
-                child: Container(
+      body: GetBuilder<HomeController>(builder: (controller) {
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          itemCount: controller.offerModel.value.data!.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisExtent: 250,
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoute.offerDetails,
+                    arguments:
+                        controller.offerModel.value.data![index].id.toString());
+              },
+              child: Container(
                 height: 250.h,
                 width: 150.w,
                 decoration: BoxDecoration(
-                image: DecorationImage(
-                fit: BoxFit.fill,
-                image:
-               NetworkImage(
-                 "${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
-               ),
-                )
-                ),
-                ),
-                // CustomNetworkImage(
-                //     imageUrl:"${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
-                //     height: 100.h,
-                //     width: 100.w)
-                // CustomImage(
-                //   fit: BoxFit.fill,
-                //   sizeWidth: 100.w,
-                //   imageSrc: currentOffer[index],
-                //   imageType: ImageType.png,
-                // ),
-              );
-            },
-          );
-        }
-      ),
+                    image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    "${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage ?? ""}",
+                  ),
+                )),
+              ),
+              // CustomNetworkImage(
+              //     imageUrl:"${ApiConstant.baseUrl}${controller.offerModel.value.data![index].offerImage??""}",
+              //     height: 100.h,
+              //     width: 100.w)
+              // CustomImage(
+              //   fit: BoxFit.fill,
+              //   sizeWidth: 100.w,
+              //   imageSrc: currentOffer[index],
+              //   imageType: ImageType.png,
+              // ),
+            );
+          },
+        );
+      }),
     );
   }
 }

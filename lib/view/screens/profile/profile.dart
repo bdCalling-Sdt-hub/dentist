@@ -109,15 +109,19 @@ class ProfileScreen extends StatelessWidget {
 
                             CustomNetworkImage(
                                 boxShape: BoxShape.circle,
-                                imageUrl: "${ApiConstant.baseUrl}${controller.userProfileModel.value.data
-                                    ?.patient?.profile ??
-                                    ""}",
+                                imageUrl:
+                                (controller.userProfileModel.value.data?.patient?.profile?.startsWith('https') ??false)?
+                                controller.userProfileModel.value.data?.patient?.profile?? ""
+                                :"${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile ?? ""}",
+                                // "${ApiConstant.baseUrl}${controller.userProfileModel.value.data
+                                //     ?.patient?.profile ??
+                                //     ""}",
                                 height:90.h,
                                 width:90.w),
 
                            SizedBox(width: 10.w),
 
-                            SizedBox(),
+                            const SizedBox(),
 
                             Expanded(
                               child: Column(
@@ -177,7 +181,7 @@ class ProfileScreen extends StatelessWidget {
                           ///==================== Date Of Birth ===================
                           infoDesign(
                               key: AppStaticStrings.dateofbirth,
-                              value: controller.userProfileModel.value.data
+                              value:controller.userProfileModel.value.data
                                       ?.patient?.dateOfBirth ??
                                   ""),
 
@@ -192,7 +196,7 @@ class ProfileScreen extends StatelessWidget {
                           infoDesign(
                               key: AppStaticStrings.plan,
                               value: controller.userProfileModel.value.data
-                                      ?.patient?.plan ??
+                                      ?.patient?.plan??
                                   ""),
                         ],
                       )

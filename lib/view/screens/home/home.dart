@@ -15,6 +15,7 @@ import 'package:dentist/view/widgets/custom_faq_design/custom_faq_design.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
+import 'package:dentist/view/widgets/expanded_animation/expanded_animation.dart';
 import 'package:dentist/view/widgets/navBar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -32,26 +33,7 @@ class HomeScreen extends StatelessWidget {
     AppImages.banner1,
     AppImages.banner2,
   ];
-
   final HomeController homeController = Get.find<HomeController>();
-
-
-  final List<Map<String, String>> faqList = [
-    {
-      "que": "How dose this app work?",
-      "ans": "This is an dummy answer, To show in UI"
-    },
-    {
-      "que": "How can i cancle my order",
-      "ans": "This is an dummy answer, To show in UI"
-    },
-    {
-      "que": "Is my data secure?",
-      "ans":
-          "This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, This is an dummy answer, To show in UI, "
-    },
-  ];
-
   final List<String> currentOffer = [
     AppImages.currentOffer1,
     AppImages.currentOffer2,
@@ -93,7 +75,7 @@ class HomeScreen extends StatelessWidget {
       ));
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       drawer: const SideDrawer(),
@@ -112,7 +94,6 @@ class HomeScreen extends StatelessWidget {
             );
           case Status.completed:
             return SingleChildScrollView(
-
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
@@ -125,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       children: [
                         CarouselSlider(
-                          options:CarouselOptions(
+                          options: CarouselOptions(
                             height: 160.0.h,
                             autoPlay: true,
                             autoPlayCurve: Curves.ease,
@@ -134,7 +115,10 @@ class HomeScreen extends StatelessWidget {
                             onPageChanged: (int index, reason) {
                               homeController.bannerIndex.value = index;
 
-                              homeController.pageController.value = PageController(initialPage: homeController.bannerIndex.value);
+                              homeController.pageController.value =
+                                  PageController(
+                                      initialPage:
+                                          homeController.bannerIndex.value);
                             },
                           ),
                           items: homeController.bannerList.map((imagePath) {
@@ -144,9 +128,8 @@ class HomeScreen extends StatelessWidget {
                                   width: 300.w,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: NetworkImage('${ApiConstant.baseUrl}${imagePath.bannerImage}')
-                                      )
-                                  ),
+                                          image: NetworkImage(
+                                              '${ApiConstant.baseUrl}${imagePath.bannerImage}'))),
                                 );
                               },
                             );
@@ -157,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                         // ),
                         SmoothPageIndicator(
                           controller: homeController.pageController.value,
-                          count:homeController.bannerList.length,
+                          count: homeController.bannerList.length,
                           axisDirection: Axis.horizontal,
                           effect: const ExpandingDotsEffect(
                             expansionFactor: 2,
@@ -182,60 +165,52 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
 
-                   SingleChildScrollView(
-                     scrollDirection: Axis.horizontal,
-                     child: Row(
-                     children:List.generate(homeController.articleCategoryModel.value.data!.length, (index){
-                       return  GestureDetector(
-                         onTap: () {
-                           Get.toNamed(AppRoute.dentalCondition,
-                           arguments:[homeController.articleCategoryModel.value.data![index].articleCategoryName??"",true]
-                           );
-                         },
-                         child: Container(
-                           margin: EdgeInsets.only(right: 16.w),
-                           decoration: BoxDecoration(
-                               border: Border.all(color: AppColors.loght600),
-                               borderRadius: BorderRadius.circular(8)),
-                           padding: EdgeInsets.all(20.r),
-                           child: Column(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                              CustomNetworkImage(imageUrl:"${ApiConstant.baseUrl}${homeController.articleCategoryModel.value.data![index].articleCategoryImage??""}",
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                            homeController.articleCategoryModel.value.data!
+                                .length, (index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoute.dentalCondition, arguments: [
+                                homeController.articleCategoryModel.value
+                                        .data![index].articleCategoryName ??
+                                    "",
+                                true
+                              ]);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(right: 16.w),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.loght600),
+                                  borderRadius: BorderRadius.circular(8)),
+                              padding: EdgeInsets.all(20.r),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomNetworkImage(
+                                      imageUrl:
+                                          "${ApiConstant.baseUrl}${homeController.articleCategoryModel.value.data![index].articleCategoryImage ?? ""}",
+                                      height: 70.h,
+                                      width: 70.w),
+                                  CustomText(
+                                      top: 10.h,
+                                      text: homeController
+                                              .articleCategoryModel
+                                              .value
+                                              .data![index]
+                                              .articleCategoryName ??
+                                          "")
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
 
-                                  height: 70.h, width: 70.w),
-                               CustomText(top: 10.h,text:homeController.articleCategoryModel.value.data![index].articleCategoryName??"")
-                             ],
-                           ),
-                         ),
-                       );
-                     }),
-                     ),
-                   ),
-
-                    // Row(
-                    //   children: [
-                    //     ///================= Dental Condition ===================
-                    //     expertAdvice(
-                    //         onTap: () {
-                    //           Get.toNamed(AppRoute.dentalCondition);
-                    //         },
-                    //         icon: AppImages.dentalCondition,
-                    //         title: AppStaticStrings.dentalCondition),
-                    //     SizedBox(
-                    //       width: 10.w,
-                    //     ),
-                    //
-                    //     ///================= Skin Care ===================
-                    //
-                    //     expertAdvice(
-                    //         onTap: () {
-                    //           Get.toNamed(AppRoute.skinCondition);
-                    //         },
-                    //         icon: AppImages.skinCare,
-                    //         title: AppStaticStrings.skinCondition)
-                    //   ],
-                    // ),
 
                     const SizedBox(
                       height: 16,
@@ -266,7 +241,111 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     ///======================= FAQ List =========================
-                    FaqDesign(),
+                    // FaqDesign(),
+                    Column(
+                      children: List.generate(
+                          homeController.faqModel.value.data!.length >= 5
+                              ? 5
+                              : homeController.faqModel.value.data?.length ?? 0,
+
+                          //homeController.faqModel.value.data!.length,
+                          (index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 15.h),
+                          child: Column(
+                            children: [
+                              ///==================== Question Design =====================
+                              GestureDetector(
+                                onTap: () {
+                                  if (homeController.selectedFqw.value ==
+                                      index) {
+                                    homeController.selectedFqw.value = 100000;
+                                  } else {
+                                    homeController.selectedFqw.value = index;
+                                  }
+
+                                  homeController.selectedFqw.refresh();
+                                },
+                                child: Container(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.w),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border:
+                                          Border.all(color: AppColors.dark200)),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: CustomText(
+                                        textAlign: TextAlign.left,
+                                        text: homeController.faqModel.value
+                                                .data![index].question ??
+                                            "",
+                                        //faqList[index]["que"]!,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                      IconButton(
+                                          onPressed: () {
+                                            if (homeController
+                                                    .selectedFqw.value ==
+                                                index) {
+                                              homeController.selectedFqw.value =
+                                                  100000;
+                                            } else {
+                                              homeController.selectedFqw.value =
+                                                  index;
+                                            }
+
+                                            homeController.selectedFqw
+                                                .refresh();
+                                          },
+                                          icon: homeController
+                                                      .selectedFqw.value ==
+                                                  index
+                                              ? const Icon(Icons
+                                                  .keyboard_arrow_down_rounded)
+                                              : const Icon(Icons
+                                                  .keyboard_arrow_right_rounded))
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///==================== Ans Design =====================
+
+                              index == homeController.selectedFqw.value
+                                  ? CustomExpandedSection(
+                                      expand: index ==
+                                              homeController.selectedFqw.value
+                                          ? true
+                                          : false,
+                                      child: Container(
+                                        margin: const EdgeInsets.only(top: 8),
+                                        padding: EdgeInsets.all(8.r),
+                                        alignment: Alignment.center,
+                                        height: 100.h,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.additional
+                                              .withOpacity(.4),
+                                          borderRadius:
+                                              BorderRadius.circular(8.r),
+                                        ),
+                                        child: CustomText(
+                                          textAlign: TextAlign.left,
+                                          text: homeController.faqModel.value
+                                                  .data![index].answer ??
+                                              "",
+                                          //faqList[index]["ans"]!,
+                                          maxLines: 6,
+                                        ),
+                                      ))
+                                  : const SizedBox()
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -299,30 +378,41 @@ class HomeScreen extends StatelessWidget {
                       child: Row(
                         children: List.generate(
                             homeController.offerModel.value.data!.length,
-                          // currentOffer.length,
-                                (index) {
+                            // currentOffer.length,
+                            (index) {
                           return Row(
-                              children: [
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(AppRoute.offerDetails,
+                                      arguments: homeController
+                                          .offerModel.value.data![index].id
+                                          .toString());
 
-                                Container(
-                                 height:250.h,
-                                 width: 150.w,
-                                 decoration:BoxDecoration(
-                                 image: DecorationImage(
-                                 fit: BoxFit.fill,
-                                 image:
-                                  NetworkImage(
-                                 "${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
-                                  ) ,
-                                 // CustomNetworkImage(
-                                 //     imageUrl:"${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
-                                 //     height: 250.h, width: 150.w)
-                                 )
-                                 ),
+                                  print(homeController
+                                      .offerModel.value.data![index].id
+                                      .toString());
+                                },
+                                child: Container(
+                                  height: 250.h,
+                                  width: 150.w,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                      "${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage ?? ""}",
+                                    ),
+                                    // CustomNetworkImage(
+                                    //     imageUrl:"${ApiConstant.baseUrl}/${homeController.offerModel.value.data![index].offerImage??""}",
+                                    //     height: 250.h, width: 150.w)
+                                  )),
                                 ),
-                                SizedBox(width: 16.w,)
-,                              ],
-                            );
+                              ),
+                              SizedBox(
+                                width: 16.w,
+                              ),
+                            ],
+                          );
                         }),
                       ),
                     ),
@@ -339,8 +429,10 @@ class HomeScreen extends StatelessWidget {
 
                     GestureDetector(
                       onTap: () async {
-                        var url = homeController.smartCheckModel.value.data![0].smartCheckLink??"";
-                            //"https://smartcheck.toothlens.com/Banning-dental/";
+                        var url = homeController.smartCheckModel.value.data![0]
+                                .smartCheckLink ??
+                            "";
+                        //"https://smartcheck.toothlens.com/Banning-dental/";
                         if (await canLaunchUrl(Uri.parse(url))) {
                           await launchUrl(Uri.parse(url));
                         } else {
@@ -348,10 +440,10 @@ class HomeScreen extends StatelessWidget {
                           throw "Could not launch $url";
                         }
                       },
-                      child:
-                      CustomNetworkImage(
-                          imageUrl:"${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data![0].smartCheckImage??""}",
-                          height:120.h,
+                      child: CustomNetworkImage(
+                          imageUrl:
+                              "${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data![0].smartCheckImage ?? ""}",
+                          height: 120.h,
                           width: 350.w),
                     ),
 
