@@ -4,6 +4,7 @@ import 'package:dentist/service/api_client.dart';
 import 'package:dentist/service/api_url.dart';
 import 'package:dentist/service/socket_service.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
+import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/screens/message/Model/message_model.dart';
 import 'package:dentist/view/screens/notification/Model/notification_model.dart';
 import 'package:flutter/foundation.dart';
@@ -15,16 +16,23 @@ class NotificationController extends GetxController{
   final rxRequestStatus = Status.loading.obs;
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
 
+HomeController homeController=Get.find<HomeController>();
+
+
+  RxInt totalPage = 0.obs;
+  RxInt currentPage = 0.obs;
+
+
   ScrollController scrollController = ScrollController();
 
   // void scrollToBottom() {
   //   if (scrollController.hasClients) {
-  //     Future.delayed(Duration(milliseconds: 300), () {
+  //     Future.delayed(const Duration(milliseconds: 300), () {
   //       scrollController.jumpTo(scrollController.position.maxScrollExtent);
   //     });
   //   }
   // }
-  //
+
 
   RxInt unreadMessage=0.obs;
   RxList<NotificationDatum> notificationModel = <NotificationDatum>[].obs;
@@ -70,7 +78,6 @@ class NotificationController extends GetxController{
             unreadMessage.refresh();
             print("-===--=-=-=-=-=-=-=-=-=-=-= this is unread ${unreadNoti.unreadNotifications.toString()}");
           }
-
           update();
         } else {
           debugPrint("Received null data for patient-notifications");
@@ -80,8 +87,6 @@ class NotificationController extends GetxController{
       }
     });
   }
-
-
 
   ///<====================== This is for get notification ====================>
 
@@ -94,6 +99,10 @@ class NotificationController extends GetxController{
       notificationModel.value = List<NotificationDatum>.from(
           response.body["data"].map((x) => NotificationDatum.fromJson(x)));
        unreadMessage.value=response.body["unreadNotifications"];
+      if (notificationModel.isNotEmpty) {
+        currentPage.value = response.body['pagination']['page'];
+        totalPage.value = response.body['pagination']['totalPage'];
+      }
        unreadMessage.refresh();
        print("===============-----------------==================---------------==== This is unread message${unreadMessage}");
       setRxRequestStatus(Status.completed);
@@ -134,10 +143,91 @@ class NotificationController extends GetxController{
 
 
 
+
+  ///============================= Load More Data ============================
+
+  var isLoadMoreRunning = false.obs;
+  RxInt page = 1.obs;
+
+  loadMore() async {
+    debugPrint("============== Load More Message ================");
+    if (rxRequestStatus.value != Status.loading &&
+        isLoadMoreRunning.value == false &&
+        totalPage != currentPage) {
+      isLoadMoreRunning(true);
+      page.value += 1;
+
+      Response response = await ApiClient.getData(
+        "${ApiConstant.getNotification}?page=$page",
+      );
+        currentPage.value = response.body['pagination']['page'] ?? 0;
+        totalPage.value = response.body['pagination']['totalPage'] ?? 0;
+
+      refresh();
+      if (response.statusCode == 200){
+
+        var demoList = List<NotificationDatum>.from(response.body["data"]
+
+            .map((x) => NotificationDatum.fromJson(x)));
+        notificationModel.addAll(demoList);
+        notificationModel.refresh();
+        refresh();
+      } else {
+        ApiChecker.checkApi(response);
+      }
+      isLoadMoreRunning(false);
+    }
+  }
+
+
+
+  // loadMore() async {
+  //   debugPrint("============== Load More Message ================");
+  //   if (rxRequestStatus.value != Status.loading &&
+  //       isLoadMoreRunning.value == false &&
+  //       totalPage.value != currentPage.value) {
+  //     isLoadMoreRunning(true);
+  //     page.value += 1;
+  //
+  //     Response response = await ApiClient.getData(
+  //       "${ApiConstant.getMessage}${homeController.chatId.value}?page=$page",
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       if (response.body != null && response.body['data'] != null) {
+  //         var demoList = List<NotificationDatum>.from(response.body["data"]
+  //             .map((x) => NotificationDatum.fromJson(x)));
+  //         notificationModel.addAll(demoList);
+  //         notificationModel.refresh();
+  //       }
+  //
+  //       if (response.body.containsKey('pagination') && response.body['pagination'] != null) {
+  //         currentPage.value = response.body['pagination']['page'] ?? 0;
+  //         totalPage.value = response.body['pagination']['totalPage'] ?? 0;
+  //       }
+  //       refresh();
+  //     } else {
+  //       ApiChecker.checkApi(response);
+  //     }
+  //     isLoadMoreRunning(false);
+  //   }
+  // }
+
+
+  ///===================Pagination Scroll Controller===============
+
+  Future<void> addScrollListener() async{
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent){
+      loadMore();
+    }
+  }
+  
   @override
   void onInit() {
     listenToNewNotification();
     getNotification();
+    scrollController.addListener(addScrollListener);
     super.onInit();
   }
 

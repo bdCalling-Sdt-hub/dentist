@@ -51,7 +51,7 @@ class _MessageScreenState extends State<MessageScreen> {
         bottomOpacity: 10,
        backgroundColor: AppColors.green900,
        centerTitle: true,
-       title:const CustomText(text:AppStaticStrings.dentalApp,fontSize: 20,color:AppColors.loght50,),
+        title:const CustomText(text:AppStaticStrings.dentalApp,fontSize: 20,color:AppColors.loght50,),
        elevation:20,
       ),
 

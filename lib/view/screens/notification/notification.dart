@@ -72,6 +72,7 @@ class NotificationScreen extends StatelessWidget {
             case Status.completed:
               return  ListView.builder(
                 padding:  const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                controller: controller.scrollController,
                 itemCount:controller.notificationModel.length??0,
                 itemBuilder: (context, index) {
                  // var data = controller.notificationModel.value.data?[index];

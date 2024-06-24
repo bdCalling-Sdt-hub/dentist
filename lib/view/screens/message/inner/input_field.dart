@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
 import 'package:dentist/utils/AppConst/app_const.dart';
@@ -46,7 +45,6 @@ class MessageInputField extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
 
-
                       ///============================== Image Pick Design ============================
 
                       controller.isComment.value==true && controller.generalController.imagePath.isNotEmpty?
@@ -89,7 +87,9 @@ class MessageInputField extends StatelessWidget {
                                 )),
                           ],
                         ),
-                      ):SizedBox(height: 1.h,),
+                      ):
+
+                      SizedBox(height: 1.h,),
 
                       Row(
                         children: [

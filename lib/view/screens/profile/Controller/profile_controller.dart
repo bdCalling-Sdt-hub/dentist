@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:dentist/service/api_check.dart';
@@ -14,6 +15,8 @@ import 'package:mime/mime.dart';
 import '../../../../helper/shared_prefe/shared_prefe.dart';
 
 class ProfileController extends GetxController with GetxServiceMixin {
+
+  HomeController homeController=Get.find<HomeController>();
 
   final rxRequestStatus = Status.loading.obs;
 
@@ -127,6 +130,8 @@ class ProfileController extends GetxController with GetxServiceMixin {
         ]);
     if (response.statusCode == 200) {
       getUserProfileData();
+      homeController.getUserProfileData();
+      homeController.setRxRequestStatus(Status.completed);
       navigator!.pop();
       Get.snackbar("", "Update Successfully");
     } else {

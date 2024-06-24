@@ -118,7 +118,7 @@ RxBool isComment=false.obs;
 
    getMyChat() async {
     var response = await ApiClient.getData("${ApiConstant.getMessage}${homeController.chatId.value}");
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200){
       messageList.value = List<MessageDatum>.from(
           response.body["data"].map((x) => MessageDatum.fromJson(x)));
          refresh();

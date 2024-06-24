@@ -27,7 +27,7 @@ class _NavBarState extends State<NavBar> {
     AppStaticStrings.home,
     AppStaticStrings.myPlan,
     AppStaticStrings.profile,
-    AppStaticStrings.help,
+    "Chat",
   ];
 
   List<String> unselectedIcon = [

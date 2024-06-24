@@ -32,7 +32,7 @@ class HomeController extends GetxController with GetxServiceMixin {
 
   Rx<ProfileModel> userProfileModel = ProfileModel().obs;
 
-  Future<bool> getUserProfileData() async {
+  Future<bool> getUserProfileData() async{
      setRxRequestStatus(Status.loading);
     var response = await ApiClient.getData(ApiConstant.userProfile);
     if (response.statusCode == 200) {

@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
       ));
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       key: scaffoldKey,
       drawer: const SideDrawer(),
