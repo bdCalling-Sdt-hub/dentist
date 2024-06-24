@@ -83,8 +83,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           onTap: () {
             widget.onTapClick();
           },
-          onFieldSubmitted:(value) {
-           widget.onSubmit!(value);
+          onFieldSubmitted: (value) {
+            if (widget.onSubmit != null) {
+              widget.onSubmit!(value);
+            }
           },
           // onFieldSubmitted:(value){
           //   widget.onSubmited!(value);
