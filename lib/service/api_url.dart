@@ -1,9 +1,9 @@
 class ApiConstant {
 
    //static const baseUrl = "http://192.168.10.64:8000"; //This is local url
-  static const baseUrl="http://192.168.10.16:5001";
-   //static const baseUrl ="https://app.findwork.careers"; //This is live url
-  static const socketUrl="http://192.168.10.16:5001";
+  //static const baseUrl="http://192.168.10.16:5001";
+   static const baseUrl ="http://209.38.136.64:5000"; //This is live url
+   static const socketUrl="http://192.168.10.16:5001";
 
 ///<=================================== For Auth part ====================>
   static const signIn = "/api/v1/auth/login";
