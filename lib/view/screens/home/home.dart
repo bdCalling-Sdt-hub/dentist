@@ -34,17 +34,17 @@ class HomeScreen extends StatelessWidget {
     AppImages.banner2,
   ];
   final HomeController homeController = Get.find<HomeController>();
-  final List<String> currentOffer = [
-    AppImages.currentOffer1,
-    AppImages.currentOffer2,
-    AppImages.currentOffer3,
-    AppImages.currentOffer1,
-    AppImages.currentOffer2,
-    AppImages.currentOffer3,
-    AppImages.currentOffer1,
-    AppImages.currentOffer2,
-    AppImages.currentOffer3,
-  ];
+  // final List<String> currentOffer = [
+  //   AppImages.currentOffer1,
+  //   AppImages.currentOffer2,
+  //   AppImages.currentOffer3,
+  //   AppImages.currentOffer1,
+  //   AppImages.currentOffer2,
+  //   AppImages.currentOffer3,
+  //   AppImages.currentOffer1,
+  //   AppImages.currentOffer2,
+  //   AppImages.currentOffer3,
+  // ];
 
   Widget expertAdvice(
           {required String icon,
@@ -103,9 +103,12 @@ class HomeScreen extends StatelessWidget {
                     HomeAppBar(scaffoldKey: scaffoldKey),
 
                     ///====================== Banner =======================
-                    Column(
+                  Column(
                       children: [
+                        if (homeController.bannerList.isNotEmpty)
+
                         CarouselSlider(
+
                           options: CarouselOptions(
                             height: 160.0.h,
                             autoPlay: true,
@@ -427,7 +430,7 @@ class HomeScreen extends StatelessWidget {
 
                     /// ====================== Smart Check =======================
 
-                    GestureDetector(
+                  if(homeController.smartCheckModel.value.data?.isNotEmpty==true)GestureDetector(
                       onTap: () async {
                         var url = homeController.smartCheckModel.value.data![0]
                                 .smartCheckLink ??
@@ -442,7 +445,7 @@ class HomeScreen extends StatelessWidget {
                       },
                       child: CustomNetworkImage(
                           imageUrl:
-                              "${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data![0].smartCheckImage ?? ""}",
+                              "${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data?[0].smartCheckImage ?? ""}",
                           height: 120.h,
                           width: 350.w),
                     ),

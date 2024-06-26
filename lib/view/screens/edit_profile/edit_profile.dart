@@ -98,7 +98,9 @@ class EditProfile extends StatelessWidget {
                             ):
                                 CustomNetworkImage(
                                 boxShape: BoxShape.circle,
-                                imageUrl: controller.userProfileModel.value.data?.patient?.profile?.isNotEmpty==true?
+                                imageUrl:controller.userProfileModel.value.data?.patient?.profile?.isNotEmpty==true?
+                                (controller.userProfileModel.value.data?.patient?.profile?.startsWith('https') ??false)?
+                                controller.userProfileModel.value.data?.patient?.profile?? ""  :
                                 "${ApiConstant.baseUrl}${controller.userProfileModel.value.data?.patient?.profile ??""}"
                                       :AppConstants.onlineImage,
                                 height: 100,
