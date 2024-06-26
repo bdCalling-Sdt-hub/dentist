@@ -103,6 +103,9 @@ class HomeScreen extends StatelessWidget {
                     HomeAppBar(scaffoldKey: scaffoldKey),
 
                     ///====================== Banner =======================
+
+                    SizedBox(height: 16.h,),
+
                   Column(
                       children: [
                         if (homeController.bannerList.isNotEmpty)
@@ -110,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                         CarouselSlider(
 
                           options: CarouselOptions(
-                            height: 160.0.h,
+                            height: 120.0.h,
                             autoPlay: true,
                             autoPlayCurve: Curves.ease,
                             pageSnapping: false,
@@ -128,10 +131,14 @@ class HomeScreen extends StatelessWidget {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10.w),
                                   width: 300.w,
                                   decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.r),
                                       image: DecorationImage(
+                                          fit: BoxFit.fill,
                                           image: NetworkImage(
+
                                               '${ApiConstant.baseUrl}${imagePath.bannerImage}'))),
                                 );
                               },
@@ -160,6 +167,7 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     ///====================== Experts Advice =======================
+
                     const CustomText(
                       top: 16,
                       bottom: 8,
@@ -239,6 +247,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     const SizedBox(
                       height: 16,
                     ),
@@ -434,7 +443,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () async {
                         var url = homeController.smartCheckModel.value.data![0]
                                 .smartCheckLink ??
-                            "";
+                            "https://smartcheck.toothlens.com/Banning-dental/";
                         //"https://smartcheck.toothlens.com/Banning-dental/";
                         if (await canLaunchUrl(Uri.parse(url))) {
                           await launchUrl(Uri.parse(url));
@@ -445,7 +454,7 @@ class HomeScreen extends StatelessWidget {
                       },
                       child: CustomNetworkImage(
                           imageUrl:
-                              "${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data?[0].smartCheckImage ?? ""}",
+                              "${ApiConstant.baseUrl}${homeController.smartCheckModel.value.data?[0].smartCheckImage??""}",
                           height: 120.h,
                           width: 350.w),
                     ),
