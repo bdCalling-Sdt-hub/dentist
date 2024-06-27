@@ -49,7 +49,7 @@ class TermsCondition extends StatelessWidget {
                         controller.termsConditionModel.value.data!.content??""
 
                     ):
-                    Center(
+                    const Center(
                       child: CustomText(
                         text:"Not  data found ",
                       ),

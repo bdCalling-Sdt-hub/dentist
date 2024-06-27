@@ -12,6 +12,7 @@ import 'package:dentist/view/screens/no_internet/no_internet.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class MessageScreen extends StatefulWidget {
@@ -39,13 +40,12 @@ class _MessageScreenState extends State<MessageScreen> {
   //   super.initState();
   // }
 
-
   final MessageController inboxController = Get.find<MessageController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     //resizeToAvoidBottomInset: true,
+       //resizeToAvoidBottomInset: true,
         appBar: AppBar(
          iconTheme: const IconThemeData(color: AppColors.loght50),
         bottomOpacity: 10,
@@ -76,7 +76,7 @@ class _MessageScreenState extends State<MessageScreen> {
               },
             );
           case Status.completed:
-            return  const Column(children:[
+            return   const Column(children:[
         ///============================== App Bar ==============================
        //  MessageAppBar(
        // // img: AppConstants.onlineImage,

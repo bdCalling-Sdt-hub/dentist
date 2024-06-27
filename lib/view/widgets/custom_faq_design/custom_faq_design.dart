@@ -45,6 +45,7 @@ class FaqDesign extends StatelessWidget{
                           Expanded(
                               child: CustomText(
                             textAlign: TextAlign.left,
+                            maxLines: 10,
                             text:homeController.faqModel.value.data![index].question??"",
                             //faqList[index]["que"]!,
                             fontWeight: FontWeight.w500,

@@ -10,8 +10,6 @@ import 'package:dentist/utils/StaticString/static_string.dart';
 import 'package:dentist/view/screens/home/controller/homecontroller.dart';
 import 'package:dentist/view/screens/home/inner/home_appbar.dart';
 import 'package:dentist/view/screens/home/inner/side_drawer.dart';
-import 'package:dentist/view/screens/notification/Controller/notification_controller.dart';
-import 'package:dentist/view/widgets/custom_faq_design/custom_faq_design.dart';
 import 'package:dentist/view/widgets/custom_image/custom_image.dart';
 import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
@@ -81,7 +79,7 @@ class HomeScreen extends StatelessWidget {
       drawer: const SideDrawer(),
       bottomNavigationBar: const NavBar(currentIndex: 0),
       body: Obx(() {
-        switch (homeController.rxRequestStatus.value) {
+        switch (homeController.rxRequestStatus.value){
           case Status.loading:
             return const CustomLoader();
           case Status.internetError:
@@ -145,9 +143,9 @@ class HomeScreen extends StatelessWidget {
                             );
                           }).toList(),
                         ),
-                        // SizedBox(
-                        //   height: 10.h,
-                        // ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         SmoothPageIndicator(
                           controller: homeController.pageController.value,
                           count: homeController.bannerList.length,
@@ -202,7 +200,9 @@ class HomeScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomNetworkImage(
+
                                       imageUrl:
+
                                           "${ApiConstant.baseUrl}${homeController.articleCategoryModel.value.data![index].articleCategoryImage ?? ""}",
                                       height: 70.h,
                                       width: 70.w),

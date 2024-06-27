@@ -12,6 +12,7 @@ import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
 class ConditionDetails extends StatefulWidget {
@@ -135,16 +136,25 @@ class _ConditionDetailsState extends State<ConditionDetails> {
 
                     ///=========================== Description ========================
 
-                    CustomText(
-                      top: 16,
-                      textAlign: TextAlign.justify,
-                      maxLines: 100,
-                      text: articleDetailsController
-                              .artiCleDetailsModel.value.data?.articleDetails ??
+                    // CustomText(
+                    //   top: 16,
+                    //   textAlign: TextAlign.justify,
+                    //   maxLines: 100,
+                    //   text: articleDetailsController
+                    //           .artiCleDetailsModel.value.data?.articleDetails ??
+                    //       "",
+                    //   fontSize: 14,
+                    //   bottom: 16,
+                    // ),
+                    //
+
+                    HtmlWidget(
+                      articleDetailsController
+                          .artiCleDetailsModel.value.data?.articleDetails ??
                           "",
-                      fontSize: 14,
-                      bottom: 16,
                     ),
+
+
 
                     ///============================ Buttons ===========================
 

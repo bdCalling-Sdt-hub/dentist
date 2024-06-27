@@ -45,6 +45,7 @@ RxBool isComment=false.obs;
     if (scrollController.hasClients) {
       Future.delayed(const Duration(milliseconds: 300), () {
         scrollController.jumpTo(scrollController.position.maxScrollExtent);
+        update();
       });
     }
   }
@@ -57,7 +58,7 @@ RxBool isComment=false.obs;
       MessageDatum newMsg = MessageDatum.fromJson(data);
       messageList.insert(messageList.length,newMsg);
       messageList.refresh();
-     // scrollToBottom();
+      //scrollToBottom();
       update();
     });
   }
@@ -188,6 +189,7 @@ RxBool isComment=false.obs;
   getMyChat();
   scrollController.addListener(addScrollListener);
   super.onInit();
+
   }
 
 

@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -41,11 +42,33 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
   //   super.dispose();
   // }
 
+  // void _scrollToBottom() {
+  //   if (controller.scrollController.hasClients) {
+  //     controller.scrollController.animateTo(controller.scrollController.position.maxScrollExtent);
+  //     duration: const Duration(milliseconds:500);
+  //   curve: Curves.easeInOutSine;
+  //
+  //   }
+  //
+  // }
   void _scrollToBottom() {
-    if (controller.scrollController.hasClients) {
-      controller.scrollController.jumpTo(controller.scrollController.position.maxScrollExtent);
-    }
+  controller. scrollController.animateTo(
+    controller. scrollController.position.extentTotal,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
+
+
+
+  // @override
+  // void initState() {
+  //       WidgetsBinding.instance.addPostFrameCallback((_){
+  //   _scrollToBottom();
+  //       });
+  //    //scrollToBottom();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +78,12 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
               image: AssetImage(AppIcons.logo),
               opacity: .05,
               fit: BoxFit.contain)),
-      padding:  EdgeInsets.all(8.0),
+      padding:  const EdgeInsets.all(8.0),
       child: GetBuilder<MessageController>(builder:(controller){
         WidgetsBinding.instance.addPostFrameCallback((_){
           _scrollToBottom();
         });
+
         return ListView.builder(
          // reverse: true,
             controller: controller.scrollController,
@@ -97,7 +121,9 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
                                       fit: BoxFit.fill,
-                                      image: NetworkImage(
+                                      image:
+
+                                      NetworkImage(
                                        "${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
                                       )
                                   ))),
@@ -238,6 +264,7 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 40.h,),
                 ],
               );
             });
