@@ -1,18 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dentist/helper/GenerelError/general_error.dart';
 import 'package:dentist/service/api_url.dart';
 import 'package:dentist/utils/AppColors/app_colors.dart';
-import 'package:dentist/utils/AppConst/app_const.dart';
 import 'package:dentist/utils/AppIcons/app_icons.dart';
 import 'package:dentist/view/screens/message/controller/message_controller.dart';
-import 'package:dentist/view/screens/no_internet/no_internet.dart';
-import 'package:dentist/view/widgets/custom_loader/custom_loader.dart';
 import 'package:dentist/view/widgets/custom_text/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -123,14 +118,18 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
                                       fit: BoxFit.fill,
                                       image:
 
-                                      NetworkImage(
-                                       "${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
-                                      )
+                                    CachedNetworkImageProvider("${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
+                                    )
+
+                                      // NetworkImage(
+                                      //  "${ApiConstant.baseUrl}${ controller.messageList[index].image.toString()}",
+                                      // )
                                   ))),
+
 
                         ///=============================Type Message=========================
 
-                        if (
+                        if(
                         controller.messageList[index].messageType=="text"
                         )
                           Flexible(
@@ -222,11 +221,10 @@ class _ChatBubbleMessageState extends State<ChatBubbleMessage> {
                                           borderRadius: BorderRadius.circular(20),
                                           image: DecorationImage(
                                               fit: BoxFit.fill,
-                                              image: NetworkImage(
+                                              image:CachedNetworkImageProvider(
                                                 "${ApiConstant.baseUrl}${controller.messageList[index].image.toString()}",
                                               )
                                           ))),
-
                                       Row(
                                         mainAxisAlignment:
                                         controller.messageList[index].sender=="patient"
